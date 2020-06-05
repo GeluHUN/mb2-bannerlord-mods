@@ -33,16 +33,16 @@
 						</Widget>
 						<ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="CoverChildren" Id="VerticalScrollbar" MinValue="0" MaxValue="100" AlignmentAxis="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Handle="VerticalScrollbarHandle" >
 							<Children>
-								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="5" HorizontalAlignment="Center"  Brush="Option.Scrollbar" />
-								<Widget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MinHeight="20" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Center" Brush="Option.Scrollbar.Handle" />
+								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="5" HorizontalAlignment="Center"  Brush="Extension.Option.Scrollbar" />
+								<Widget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MinHeight="20" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Center" Brush="Extension.Option.Scrollbar.Handle" />
 							</Children>
 						</ScrollbarWidget>
 						<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="400">
 							<Children>
 								<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" LayoutImp.LayoutMethod="VerticalBottomToTop">
 									<Children>
-										<RichTextWidget Id="HintTitle" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="10" Brush="Option.Hint.Title" Text="" />
-										<RichTextWidget Id="HintText" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="25" Brush="Option.Hint.Text" Text="" />
+										<RichTextWidget Id="HintTitle" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="10" Brush="Extension.Option.Hint.Title" Text="" />
+										<RichTextWidget Id="HintText" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="25" Brush="Extension.Option.Hint.Text" Text="" />
 									</Children>
 								</ListPanel>
 							</Children>

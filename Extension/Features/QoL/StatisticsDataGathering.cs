@@ -1,12 +1,13 @@
-﻿using TaleWorlds.CampaignSystem;
-using Extension.Config;
+﻿using Extension.Config;
 using Extension.Features.QoL.UI;
-using System;
-using System.Collections.Generic;
-using HarmonyLib;
-using System.Linq;
 using Extension.Utils;
+using HarmonyLib;
+using SandBox.View.Map;
+using System.Collections.Generic;
+using System.Linq;
+using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
+using TaleWorlds.InputSystem;
 
 namespace Extension.Features.QoL
 {
@@ -225,18 +226,66 @@ namespace Extension.Features.QoL
         }
     }
 
+    class StatisticsHotKeyCategory : GameKeyContext
+    {
+        public static string CategoryId => "StatisticsHotKeyCategory";
+        public static bool Initialized { get; private set; } = false;
+
+        StatisticsHotKeyCategory()
+            : base(CategoryId, 0)
+        {
+            RegisterHotKey(new HotKey("ShowStatistics", CategoryId, InputKey.S, HotKey.Modifiers.Control, HotKey.Modifiers.None), true);
+        }
+
+        public static void Remove()
+        {
+            Initialized = false;
+        }
+
+        static void Initialize()
+        {
+            Dictionary<string, GameKeyContext> categories = (Dictionary<string, GameKeyContext>)
+                Traverse.Create(typeof(HotKeyManager))
+                        .Field("_categories")
+                        .GetValue();
+            if (categories.TryGetValue(CategoryId, out GameKeyContext category) == false)
+            {
+                categories.Add(CategoryId, category = new StatisticsHotKeyCategory());
+            }
+            InputContext context = (InputContext)MapScreen.Instance?.Input;
+            if (context != null)
+            {
+                if (context.IsCategoryRegistered(category) == false)
+                {
+                    context.RegisterHotKeyCategory(category);
+                    Initialized = true;
+                }
+            }
+        }
+
+        public static bool IsHotKeyPressed()
+        {
+            if (Initialized == false)
+            {
+                Initialize();
+                return false;
+            }
+            return MapScreen.Instance.Input.IsHotKeyPressed("ShowStatistics");
+        }
+    }
+
     class StatisticsDataGathering : CampaignBehaviorExt
     {
         readonly Statistics Data = new Statistics();
         StatisticScreen Screen;
 
-        // TODO have a hotkey to toggle the screen visibility
-
         protected override void OnSessionLaunched(CampaignGameStarter starter)
         {
             // TODO test StatisticsDataLogHelper and its usage
             //StatisticsDataLogHelper.StartCapturing();
+            StatisticsHotKeyCategory.Remove();
             Module.Instance.GameEndEvent += OnGameEnd;
+            Module.Instance.ApplicationTickEvent += OnApplicationTick;
             Screen = new StatisticScreen();
             StatData data = Data.Collect(TaleWorlds.CampaignSystem.Campaign.CurrentTime);
             Screen.UpdateData(data);
@@ -244,6 +293,7 @@ namespace Extension.Features.QoL
 
         void OnGameEnd(Game game)
         {
+            StatisticsHotKeyCategory.Remove();
             if (Screen != null)
             {
                 Screen.OnFinalize();
@@ -260,6 +310,18 @@ namespace Extension.Features.QoL
             }
             StatData data = Data.Collect(TaleWorlds.CampaignSystem.Campaign.CurrentTime);
             Screen.UpdateData(data);
+        }
+
+        void OnApplicationTick(float dt)
+        {
+            if (MapScreen.Instance == null)
+            {
+                return;
+            }
+            if (StatisticsHotKeyCategory.IsHotKeyPressed())
+            {
+                Screen.ToggleVisible();
+            }
         }
 
         static internal void Initialize_Configuration()

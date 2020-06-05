@@ -83,7 +83,7 @@ namespace Extension.Features.Campaign
                 min: 0,
                 max: 1);
             Options.Campaign.Bandits.KillingBanditsIncreaseRelations.BanditIncreaseRelation.Set(
-                value: 0.1f,
+                value: 0.2f,
                 defaultValue: 0.2f,
                 min: 0,
                 max: 1);

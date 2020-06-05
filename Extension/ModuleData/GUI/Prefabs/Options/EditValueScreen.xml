@@ -10,20 +10,20 @@
 								<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="15" MarginRight="15" MarginTop="15" MarginBottom="15"/>
 								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedHeight="150" SuggestedWidth="750" HorizontalAlignment="Center" PositionYOffset="-20" Sprite="StdAssets\tabbar_popup" IsDisabled="true">
 									<Children>
-										<RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-20" Brush="OptionCategory.Title.Text" Text="@Name" />
+										<RichTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Center" PositionYOffset="-20" Brush="Extension.OptionCategory.Title.Text" Text="@Name" />
 									</Children>
 								</Widget>
 							</Children>
 						</Widget>
 						<ListPanel HeightSizePolicy="CoverChildren" MarginTop="90" WidthSizePolicy="StretchToParent" LayoutImp.LayoutMethod="VerticalBottomToTop">
 							<Children>
-								<RichTextWidget HeightSizePolicy="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="200" SuggestedWidth="750" Text="@HintText" VerticalAlignment="Top" HorizontalAlignment="Center" Brush="Option.Hint.Text" />
+								<RichTextWidget HeightSizePolicy="Fixed" WidthSizePolicy="Fixed" SuggestedHeight="200" SuggestedWidth="750" Text="@HintText" VerticalAlignment="Top" HorizontalAlignment="Center" Brush="Extension.Option.Hint.Text" />
 								<Widget DoNotAcceptEvents="true" WidthSizePolicy="Fixed" SuggestedWidth="300" HeightSizePolicy="Fixed" SuggestedHeight="70" Sprite="CharacterCreation\name_input_area" HorizontalAlignment="Center" MarginTop="30">
 									<Children>
 										<EditableTextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" MarginLeft="10" MarginRight="10" MarginTop="10" MarginBottom="10" Brush="Review.NameInput.Text" RealText="@AsText" IsObfuscationEnabled="false" />
 									</Children>
 								</Widget>
-								<RichTextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="Fixed" MarginTop="10" SuggestedWidth="750" Text="@ErrorMessage" VerticalAlignment="Top" HorizontalAlignment="Center" Brush="Option.ValueError.Text" />
+								<RichTextWidget HeightSizePolicy="CoverChildren" WidthSizePolicy="Fixed" MarginTop="10" SuggestedWidth="750" Text="@ErrorMessage" VerticalAlignment="Top" HorizontalAlignment="Center" Brush="Extension.Option.ValueError.Text" />
 							</Children>
 						</ListPanel>
 					</Children>

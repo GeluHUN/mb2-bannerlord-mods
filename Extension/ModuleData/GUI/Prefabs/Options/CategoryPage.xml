@@ -37,7 +37,7 @@
 											<Children>
 												<ListPanel Id="HeaderList" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" SuggestedWidth="600" HeightSizePolicy="CoverChildren" VerticalAlignment="Center" LayoutImp.LayoutMethod="HorizontalRightToLeft">
 													<Children>
-														<TextWidget Id="GroupName" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="OptionGroup.Title.Text" Text="@Name" />
+														<TextWidget Id="GroupName" DoNotAcceptEvents="true" WidthSizePolicy="CoverChildren" VerticalAlignment="Center" Brush="Extension.OptionGroup.Title.Text" Text="@Name" />
 														<ButtonWidget MarginRight="5" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" SuggestedWidth="40" SuggestedHeight="40" ButtonType="Toggle" IsSelected="@Enabled" Brush="Extension.Checkbox.Button" />
 														<ButtonWidget Id="CollapseButton" MarginRight="10" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" VerticalAlignment="Center" SuggestedWidth="40" SuggestedHeight="40" Brush="Extension.Collapse.Button" />
 													</Children>

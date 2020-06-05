@@ -270,7 +270,7 @@ namespace Extension.Config
             {
                 Category.Create(Id,
                     name: "Campaign",
-                    hint: "Changes effecting the single player campaign and stories");
+                    hint: "Changes effecting the player's Hero, campaign, stories and quests");
             }
         }
 

@@ -57,7 +57,7 @@ namespace Extension.Features.Sandbox
 
         protected void AddOption(string name, string hint, float effect)
         {
-            FloatOption.Create(OptionId, Options.Sandbox.SimulatedBattle.Group,
+            FloatOption.Create(OptionId, Options.Sandbox.Prosperity.Group,
                 name: name,
                 hint: hint,
                 value: effect,

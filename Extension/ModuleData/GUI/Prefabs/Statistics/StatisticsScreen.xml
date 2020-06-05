@@ -8,7 +8,7 @@
 							<Children>
 								<ListPanel DataSource="{DataColumns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
 									<ItemTemplate>
-										<RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MarginLeft="5" MarginTop="5" Text="@AsText" Brush="Statistics.Text" SuggestedWidth="100" SuggestedHeight="30" />
+										<RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MarginLeft="5" MarginTop="5" Text="@AsText" Brush="Extension.Statistics.Text" SuggestedWidth="100" SuggestedHeight="30" />
 									</ItemTemplate>
 								</ListPanel>
 							</Children>

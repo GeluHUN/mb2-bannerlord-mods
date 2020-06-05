@@ -14,7 +14,11 @@
 						<Widget Id="SliderHandle" DoNotAcceptEvents="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="14" SuggestedHeight="38" HorizontalAlignment="Left" VerticalAlignment="Center" Brush="SPOptions.Slider.Handle" />
 					</Children>
 				</SliderWidget>
-				<RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="60" Brush="SPOptions.Slider.Value.Text" IsEnabled="false" Text="@AsText" />
+				<ButtonWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="60" HorizontalAlignment="Right" DoNotPassEventsToChildren="true" VerticalAlignment="Center" Command.Click="OnValueClick" >
+					<Children>
+						<RichTextWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginLeft="60" Brush="SPOptions.Slider.Value.Text" IsEnabled="false" Text="@AsText" />
+					</Children>
+				</ButtonWidget>
 			</Children>
 		</ListPanel>
 	</Window>

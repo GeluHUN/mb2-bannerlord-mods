@@ -1,6 +1,5 @@
 ﻿using Extension.Config;
 using Extension.Utils;
-using SandBox.ViewModelCollection.Nameplate.NameplateNotifications;
 using System;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.CampaignSystem.Actions;
@@ -220,6 +219,36 @@ namespace Extension.Features.Campaign
                 TrainedHours++;
                 Hero.MainHero.AddSkillXp(SkillToTrain, ExperienceIncreasePerHour);
             }
+        }
+
+        static internal void Initialize_Configuration()
+        {
+            Options.Campaign.SkillTraining.TrainSessionLength.Set(
+                value: 24,
+                defaultValue: 24,
+                min: 1,
+                max: 48);
+            Options.Campaign.SkillTraining.RestLength.Set(
+                value: 24,
+                defaultValue: 24,
+                min: 1,
+                max: 48);
+            Options.Campaign.SkillTraining.HighestTrainableSkillLevel.Set(
+                value: 150,
+                defaultValue: 150,
+                min: 0,
+                max: 250);
+            Options.Campaign.SkillTraining.SkillLevelGoldCost.Set(
+                value: 100,
+                defaultValue: 100,
+                min: 0,
+                max: 1000);
+            Options.Campaign.SkillTraining.ExperienceIncreasePerHour.Set(
+                value: 10,
+                defaultValue: 10,
+                min: 1,
+                max: 100);
+            Options.Campaign.SkillTraining.Group.Classes.Add(typeof(SkillTraining));
         }
     }
 }

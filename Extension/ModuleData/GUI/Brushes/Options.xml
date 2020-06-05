@@ -111,7 +111,7 @@
 			</Style>
 		</Styles>
 	</Brush>
-	<Brush Name="Option.TabControl.Text" Font="Galahad">
+	<Brush Name="Extension.Option.TabControl.Text" Font="Galahad">
 		<Styles>
 			<Style Name="Default" FontColor="#C6AC8DFF" TextAlphaFactor="1.0" TextOutlineAmount="0.1" TextGlowRadius="0" TextBlur="0" TextShadowOffset="1" TextShadowAngle="60" FontSize="28" />
 			<Style Name="Selected" FontColor="#E6CEA0FF" TextAlphaFactor="1.0" />
@@ -119,19 +119,19 @@
 			<Style Name="Disabled" TextAlphaFactor="0.3" />
 		</Styles>
 	</Brush>
-	<Brush Name="OptionCategory.Title.Text" Font="FiraSansExtraCondensed-Regular" TextVerticalAlignment="Center" TextHorizontalAlignment="Center">
+	<Brush Name="Extension.OptionCategory.Title.Text" Font="FiraSansExtraCondensed-Regular" TextVerticalAlignment="Center" TextHorizontalAlignment="Center">
 		<Styles>
 			<Style Name="Default" FontColor="#D69846FF" TextAlphaFactor="1.0" TextGlowColor="#FFFFFF00" TextOutlineColor="#FFFFFF00" TextOutlineAmount="0" TextGlowRadius="0" TextBlur="0" FontSize="36" />
 			<Style Name="Disabled" TextAlphaFactor="0.5" />
 		</Styles>
 	</Brush>
-	<Brush Name="OptionGroup.Title.Text" Font="FiraSansExtraCondensed-Regular" TextVerticalAlignment="Center" TextHorizontalAlignment="Center">
+	<Brush Name="Extension.OptionGroup.Title.Text" Font="FiraSansExtraCondensed-Regular" TextVerticalAlignment="Center" TextHorizontalAlignment="Center">
 		<Styles>
 			<Style Name="Default" FontColor="#D69846FF" TextAlphaFactor="1.0" TextGlowColor="#FFFFFF00" TextOutlineColor="#FFFFFF00" TextOutlineAmount="0" TextGlowRadius="0" TextBlur="0" FontSize="36" />
 			<Style Name="Disabled" TextAlphaFactor="0.5" />
 		</Styles>
 	</Brush>
-	<Brush Name="Option.Scrollbar.Handle">
+	<Brush Name="Extension.Option.Scrollbar.Handle">
 		<Layers>
 			<BrushLayer Name="Default" Sprite="slider_thin_9" />
 		</Layers>
@@ -153,7 +153,7 @@
 			</Style>
 		</Styles>
 	</Brush>
-	<Brush Name="Option.Scrollbar">
+	<Brush Name="Extension.Option.Scrollbar">
 		<Layers>
 			<BrushLayer Name="Default" Sprite="SPRecruitment\slider_thin_bed" />
 		</Layers>
@@ -175,7 +175,7 @@
 			</Style>
 		</Styles>
 	</Brush>
-	<Brush Name="Option.Hint.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+	<Brush Name="Extension.Option.Hint.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
 		<Styles>
 			<Style Name="Default" FontColor="#F2DEB9FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="24" />
 			<Style Name="Red" FontColor="#FF0000FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0.1" TextOutlineColor="#FF0000FF" FontSize="24" />
@@ -185,23 +185,18 @@
 			<Style Name="Cheat" FontColor="#00FFFFFF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="24" />
 		</Styles>
 	</Brush>
-	<Brush Name="Option.ValueError.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
+	<Brush Name="Extension.Option.ValueError.Text" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Center">
 		<Styles>
 			<Style Name="Default" FontColor="#F2DEB9FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="20" />
 			<Style Name="Red" FontColor="#FF0000FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0.1" TextOutlineColor="#FF0000FF" FontSize="20" />
 		</Styles>
 	</Brush>
-	<Brush Name="Option.Hint.Title" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
+	<Brush Name="Extension.Option.Hint.Title" Font="FiraSansExtraCondensed-Regular" TextHorizontalAlignment="Left">
 		<Styles>
 			<Style Name="Default" FontColor="#D69846FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="36" />
 			<Style Name="OptionEnabled" TextHorizontalAlignment="Center" Font="FiraSansExtraCondensed-Light" FontColor="#FFFFFFFF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="20" />
 			<Style Name="OptionDisabled" TextHorizontalAlignment="Center" Font="FiraSansExtraCondensed-Light" FontColor="#A0A0A0FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="20" />
 			<Style Name="Bold" FontColor="#D69846FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0.1" TextOutlineColor="#D69846FF" FontSize="36" />
-		</Styles>
-	</Brush>
-	<Brush Name="Statistics.Text" Font="FiraSansExtraCondensed-Light" TextHorizontalAlignment="Center">
-		<Styles>
-			<Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="16" />
 		</Styles>
 	</Brush>
 </Brushes>

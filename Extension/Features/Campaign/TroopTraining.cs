@@ -221,7 +221,7 @@ namespace Extension.Features.Campaign
                 defaultValue: 0.2f,
                 min: 0,
                 max: 1);
-            Options.Campaign.TroopTraining.TroopTierGoldCost.Set(
+            Options.Campaign.TroopTraining.ExperienceIncreasePerHour.Set(
                 value: 25,
                 defaultValue: 25,
                 min: 1,

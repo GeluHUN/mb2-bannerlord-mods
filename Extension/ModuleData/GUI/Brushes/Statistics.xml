@@ -1,0 +1,7 @@
+<Brushes>
+	<Brush Name="Extension.Statistics.Text" Font="FiraSansExtraCondensed-Light" TextHorizontalAlignment="Center">
+		<Styles>
+			<Style Name="Default" FontColor="#FFFFFFFF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="16" />
+		</Styles>
+	</Brush>
+</Brushes>

@@ -7,7 +7,7 @@
 	<Window>
 		<ExtTabToggleWidget TabName="@Id" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="280" SuggestedHeight="50" VerticalAlignment="Center" TabControlWidget="*TabControlWidget" Brush="Header.Tab.Center" UpdateChildrenStates="true" CategoryName="@Name" CategoryHint="@HintText" HintTitleWidgetName="*HintTitleWidgetName" HintTextWidgetName="*HintTextWidgetName">
 			<Children>
-				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Option.TabControl.Text" Text="@Name" />
+				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Extension.Option.TabControl.Text" Text="@Name" />
 			</Children>
 		</ExtTabToggleWidget>
 	</Window>

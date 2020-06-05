@@ -1,4 +1,5 @@
 ﻿using SandBox.View.Map;
+using System;
 using TaleWorlds.Engine.GauntletUI;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.GauntletUI.Data;
@@ -33,6 +34,14 @@ namespace Extension.Features.QoL.UI
         public void UpdateData(StatData data)
         {
             DataSource.UpdateData(data);
+        }
+
+        public void ToggleVisible()
+        {
+            if (MapScreen.Instance != null && MapScreen.Instance.IsActive)
+            {
+                Movie.Context.Root.IsVisible = !Movie.Context.Root.IsVisible;
+            }
         }
     }
 }

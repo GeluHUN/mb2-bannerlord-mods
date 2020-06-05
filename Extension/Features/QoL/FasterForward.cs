@@ -8,7 +8,6 @@ using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.InputSystem;
 using TaleWorlds.Library;
-using TaleWorlds.MountAndBlade;
 
 namespace Extension.Features.QoL
 {
@@ -24,7 +23,7 @@ namespace Extension.Features.QoL
         {
             for (int i = 0; i < Options.QoL.FasterForward.NumberOfSettings; i++)
             {
-                RegisterHotKey(new HotKey($"{HotKeyId}{i + 1}", MapHotKeyCategory.CategoryId, InputKey.D1 + i, HotKey.Modifiers.Control, HotKey.Modifiers.None), true);
+                RegisterHotKey(new HotKey($"{HotKeyId}{i + 1}", CategoryId, InputKey.D1 + i, HotKey.Modifiers.Control, HotKey.Modifiers.None), true);
             }
         }
 
