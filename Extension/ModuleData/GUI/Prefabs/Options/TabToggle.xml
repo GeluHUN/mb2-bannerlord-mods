@@ -1,0 +1,14 @@
+<Prefab>
+	<Parameters>
+		<Parameter Name="HintTitleWidgetName" DefaultValue="" />
+		<Parameter Name="HintTextWidgetName" DefaultValue="" />
+		<Parameter Name="TabControlWidget" DefaultValue="" />
+	</Parameters>
+	<Window>
+		<ExtTabToggleWidget TabName="@Id" DoNotPassEventsToChildren="true" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="280" SuggestedHeight="50" VerticalAlignment="Center" TabControlWidget="*TabControlWidget" Brush="Header.Tab.Center" UpdateChildrenStates="true" CategoryName="@Name" CategoryHint="@HintText" HintTitleWidgetName="*HintTitleWidgetName" HintTextWidgetName="*HintTextWidgetName">
+			<Children>
+				<TextWidget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" Brush="Option.TabControl.Text" Text="@Name" />
+			</Children>
+		</ExtTabToggleWidget>
+	</Window>
+</Prefab>

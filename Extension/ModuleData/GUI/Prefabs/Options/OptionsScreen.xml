@@ -1,0 +1,56 @@
+<Prefab>
+	<Window>
+		<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+			<Children>
+				<Standard.Background />
+				<Standard.TopPanel Parameter.Title="Extension options">
+					<Children>
+						<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Bottom" MarginBottom="40" LayoutImp.LayoutMethod="HorizontalLeftToRight" DataSource="{OptionCategories}">
+							<ItemTemplate>
+								<TabToggle Parameter.TabControlWidget="..\..\..\MainListPanel\OptionPanel\ScrollablePanel\ClipRect\TabControl" Parameter.HintTitleWidgetName="HintTitle" Parameter.HintTextWidgetName="HintText" />
+							</ItemTemplate>
+						</ListPanel>
+					</Children>
+				</Standard.TopPanel>
+				<ListPanel Id="MainListPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" MarginLeft="10" MarginRight="10" MarginTop="164" MarginBottom="55" HorizontalAlignment="Center">
+					<Children>
+						<Widget Id="OptionPanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+							<Children>
+								<ScrollablePanel Id="ScrollablePanel" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" VerticalAlignment="Center" AutoHideScrollBarHandle="true" AutoHideScrollBars="false" ClipRect="ClipRect" InnerPanel="ClipRect\TabControl" VerticalScrollbar="..\..\VerticalScrollbar">
+									<Children>
+										<Widget Id="ClipRect" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" HorizontalAlignment="Center" ClipContents="true">
+											<Children>
+												<TabControl Id="TabControl" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" DataSource="{OptionCategories}">
+													<ItemTemplate>
+														<CategoryPage Parameter.HintTitleWidgetName="HintTitle" Parameter.HintTextWidgetName="HintText" />
+													</ItemTemplate>
+												</TabControl>
+											</Children>
+										</Widget>
+									</Children>
+								</ScrollablePanel>
+							</Children>
+						</Widget>
+						<ScrollbarWidget HeightSizePolicy ="StretchToParent" WidthSizePolicy="CoverChildren" Id="VerticalScrollbar" MinValue="0" MaxValue="100" AlignmentAxis="Vertical" HorizontalAlignment="Right" VerticalAlignment="Center" Handle="VerticalScrollbarHandle" >
+							<Children>
+								<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="5" HorizontalAlignment="Center"  Brush="Option.Scrollbar" />
+								<Widget Id="VerticalScrollbarHandle" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MinHeight="20" SuggestedWidth="30" SuggestedHeight="30" HorizontalAlignment="Center" Brush="Option.Scrollbar.Handle" />
+							</Children>
+						</ScrollbarWidget>
+						<Widget WidthSizePolicy="Fixed" HeightSizePolicy="StretchToParent" SuggestedWidth="400">
+							<Children>
+								<ListPanel WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginLeft="10" LayoutImp.LayoutMethod="VerticalBottomToTop">
+									<Children>
+										<RichTextWidget Id="HintTitle" HorizontalAlignment="Center" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" MarginTop="10" Brush="Option.Hint.Title" Text="" />
+										<RichTextWidget Id="HintText" WidthSizePolicy="StretchToParent" HeightSizePolicy="CoverChildren" MarginTop="25" Brush="Option.Hint.Text" Text="" />
+									</Children>
+								</ListPanel>
+							</Children>
+						</Widget>
+					</Children>
+				</ListPanel>
+				<Standard.TripleDialogCloseButtons Parameter.CancelButtonAction="ExecuteCancel" Parameter.CancelButtonText="Cancel" Parameter.DoneButtonAction="ExecuteSave" Parameter.DoneButtonText="Save" Parameter.ResetButtonAction="ExecuteReset" />
+			</Children>
+		</Widget>
+	</Window>
+</Prefab>

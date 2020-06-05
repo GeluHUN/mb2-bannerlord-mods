@@ -1,0 +1,21 @@
+<Prefab>
+	<Window>
+		<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Center" VerticalAlignment="Top" DoNotAcceptEvents="true" MarginTop="50" Sprite="BlankWhiteSquare_9" Brush.Color="#000000AA">
+			<Children>
+				<ListPanel DataSource="{DataLines}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalBottomToTop">
+					<ItemTemplate>
+						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren">
+							<Children>
+								<ListPanel DataSource="{DataColumns}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+									<ItemTemplate>
+										<RichTextWidget WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" MarginLeft="5" MarginTop="5" Text="@AsText" Brush="Statistics.Text" SuggestedWidth="100" SuggestedHeight="30" />
+									</ItemTemplate>
+								</ListPanel>
+							</Children>
+						</Widget>
+					</ItemTemplate>
+				</ListPanel>
+			</Children>
+		</Widget>
+	</Window>
+</Prefab>

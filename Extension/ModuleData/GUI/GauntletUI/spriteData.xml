@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<SpriteData>
+	<SpriteCategories>
+		<SpriteCategory>
+			<Name>Extension</Name>
+			<SpriteSheetCount>1</SpriteSheetCount>
+			<SpriteSheetSize ID="1" Width="128" Height="128" />
+		</SpriteCategory>
+	</SpriteCategories>
+	<SpriteParts>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>arrow_pointing_down</Name>
+			<Width>49</Width>
+			<Height>39</Height>
+			<SheetX>0</SheetX>
+			<SheetY>0</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>arrow_pointing_right</Name>
+			<Width>39</Width>
+			<Height>49</Height>
+			<SheetX>50</SheetX>
+			<SheetY>0</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+	</SpriteParts>
+	<Sprites>
+		<GenericSprite>
+			<Name>arrow_pointing_right</Name>
+			<SpritePartName>arrow_pointing_right</SpritePartName>
+		</GenericSprite>
+		<GenericSprite>
+			<Name>arrow_pointing_down</Name>
+			<SpritePartName>arrow_pointing_down</SpritePartName>
+		</GenericSprite>
+	</Sprites>
+</SpriteData>
