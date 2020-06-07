@@ -24,7 +24,7 @@ namespace Extension.Features.Campaign
 
         void AddOption(int initialSkillValue)
         {
-            FloatOption.Create(SkillId, Options.Campaign.StrongerHeroAtStart.Group,
+            IntOption.Create(SkillId, Options.Campaign.StrongerHeroAtStart.Group,
                 name: SkillName,
                 hint: $"{SkillName} initial value to set at the game start.",
                 value: initialSkillValue,

@@ -26,7 +26,7 @@ namespace Extension.Features.Sandbox
             float extraRate = WartimeRecruitmentRate;
             if (extraRate > 1 && FactionManager.Instance.FindCampaignWarsOfFaction(settlement.OwnerClan).Any())
             {
-                explainedNumber.Add(result > 0 ? result * extraRate : result / extraRate, new TextObject("Wartime recruitment", null));
+                explainedNumber.Add(result > 0 ? result * extraRate : -result / extraRate, new TextObject("Wartime recruitment", null));
             }
             return explainedNumber.ResultNumber;
         }

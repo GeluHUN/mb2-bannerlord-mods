@@ -1,6 +1,7 @@
 ﻿using HarmonyLib;
 using Extension.Config;
 using TaleWorlds.MountAndBlade;
+using System;
 
 namespace Extension.Features.Battles
 {
@@ -48,8 +49,8 @@ namespace Extension.Features.Battles
         public static void GetShieldDirectionOfUnit_Postfix(ref Agent.UsageDirection __result, Formation formation, Agent unit, ArrangementOrder.ArrangementOrderEnum orderEnum)
         {
             bool isUnitDetached = (bool)Traverse.Create(formation)
-                                                .Method("IsUnitDetached")
-                                                .GetValue(new object[] { unit });
+                                                .Method("IsUnitDetached", new Type[] { typeof(Agent) }, new object[] { unit })
+                                                .GetValue();
             if (isUnitDetached)
             {
                 __result = Agent.UsageDirection.DefendAny;

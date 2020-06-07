@@ -190,9 +190,9 @@ namespace Extension.Config
 
         public override bool IsValid(object value)
         {
-            if (value != null && value is int)
+            if (value != null && value is int intVal)
             {
-                return (int)value >= Min && (int)value <= Max;
+                return intVal >= Min && intVal <= Max;
             }
             return false;
         }
@@ -202,12 +202,16 @@ namespace Extension.Config
             return Math.Min(Math.Max((int)value, Min), Max);
         }
 
-        public static IntOption Create(string id, ParentElement parent, string name, string hint)
+        public static IntOption Create(string id, ParentElement parent, string name, string hint, int value = default, int defaultValue = default, int min = default, int max = default)
         {
             return new IntOption(id, parent)
             {
                 Name = name,
-                Hint = hint
+                Hint = hint,
+                Value = value,
+                Default = defaultValue,
+                Min = min,
+                Max = max
             };
         }
 
@@ -243,9 +247,9 @@ namespace Extension.Config
 
         public override bool IsValid(object value)
         {
-            if (value != null && value is float)
+            if (value != null && value is float floatVal)
             {
-                return (float)value >= Min && (float)value <= Max;
+                return floatVal >= Min && floatVal <= Max;
             }
             return false;
         }
@@ -295,9 +299,9 @@ namespace Extension.Config
 
         public override bool IsValid(object value)
         {
-            if (value != null && value is float)
+            if (value != null && value is float floatVal)
             {
-                return (float)value >= 0 && (float)value <= 1;
+                return floatVal >= 0 && floatVal <= 1;
             }
             return false;
         }

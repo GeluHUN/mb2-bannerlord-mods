@@ -18,7 +18,7 @@ namespace Extension.Features.Sandbox
             }
             if (LootersCantKill
                 && enemyParty?.Culture != null
-                && enemyParty.Culture.StringId == "Looters")
+                && enemyParty.Culture.StringId == "looters")
             {
                 return 1f;
             }

@@ -10,6 +10,7 @@ namespace Extension.Features.QoL.UI
     {
         readonly StatisticVM DataSource;
         readonly GauntletMovie Movie;
+        bool Visible = true;
 
         public StatisticScreen()
         {
@@ -23,7 +24,7 @@ namespace Extension.Features.QoL.UI
         protected override void OnTick(float dt)
         {
             base.OnTick(dt);
-            Movie.Context.Root.IsVisible = MapScreen.Instance != null && MapScreen.Instance.IsActive;
+            Movie.Context.Root.IsVisible = Visible && MapScreen.Instance != null && MapScreen.Instance.IsActive;
         }
 
         public void OnFinalize()
@@ -40,7 +41,7 @@ namespace Extension.Features.QoL.UI
         {
             if (MapScreen.Instance != null && MapScreen.Instance.IsActive)
             {
-                Movie.Context.Root.IsVisible = !Movie.Context.Root.IsVisible;
+                Visible = !Visible;
             }
         }
     }
