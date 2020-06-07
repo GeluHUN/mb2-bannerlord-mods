@@ -19,6 +19,7 @@
 												<FloatOption DataSource="{FloatOption}" />
 												<IntOption DataSource="{IntOption}" />
 												<EnumOption DataSource="{EnumOption}" />
+												<PercentOption DataSource="{PercentOption}" />
 											</Children>
 										</Widget>
 									</Children>
@@ -60,6 +61,7 @@
 																<FloatOption DataSource="{FloatOption}" />
 																<IntOption DataSource="{IntOption}" />
 																<EnumOption DataSource="{EnumOption}" />
+																<PercentOption DataSource="{PercentOption}" />
 															</Children>
 														</Widget>
 													</Children>

@@ -1,6 +1,6 @@
 <Prefab>
 	<Window>
-		<Widget IsVisible="@IsValid" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent"  >
+		<Widget IsVisible="@IsValid" WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
 			<Children>
 				<Standard.DropdownWithHorizontalControl VerticalAlignment="Center" IsVisible="true" Parameter.SelectorDataSource="{EnumValues}" />
 			</Children>

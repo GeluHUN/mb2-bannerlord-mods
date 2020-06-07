@@ -1,6 +1,6 @@
 <Prefab>
 	<Window>
-		<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent">
+		<Widget WidthSizePolicy="StretchToParent" HeightSizePolicy="StretchToParent" IsVisible="@IsValid">
 			<Children>
 				<ButtonWidget VerticalAlignment="Center" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="40" SuggestedHeight="40" Brush="Extension.Option.Checkbox.Button" ButtonType="Toggle" IsSelected="@Value" IsEnabled="@IsValid" />
 			</Children>

@@ -228,9 +228,7 @@ namespace Extension.Features.Campaign
                 max: 1000);
             Options.Campaign.TroopTraining.MaxWoundChance.Set(
                 value: 0.05f,
-                defaultValue: 0.05f,
-                min: 0,
-                max: 0.25f);
+                defaultValue: 0.05f);
             Options.Campaign.TroopTraining.Group.Classes.Add(typeof(TroopTraining));
         }
     }

@@ -179,7 +179,7 @@ namespace Extension.Config
                 public static IntOption ExperienceIncreasePerHour => Group[ExperienceIncreasePerHourId] as IntOption;
 
                 public static string MaxWoundChanceId => "maxwoundchance";
-                public static FloatOption MaxWoundChance => Group[MaxWoundChanceId] as FloatOption;
+                public static PercentOption MaxWoundChance => Group[MaxWoundChanceId] as PercentOption;
 
                 static TroopTraining()
                 {
@@ -204,7 +204,7 @@ namespace Extension.Config
                     IntOption.Create(ExperienceIncreasePerHourId, Group,
                         name: "Experience",
                         hint: "Each hour while training each troop gets this many experience.");
-                    FloatOption.Create(MaxWoundChanceId, Group,
+                    PercentOption.Create(MaxWoundChanceId, Group,
                         name: "Wound chance",
                         hint: "Wound chance for tier 0 troops every hour. Higher tiers decresed this a bit by each tier.");
                 }

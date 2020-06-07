@@ -12,9 +12,9 @@ namespace Extension.Config.UI
         where OptionType : TypedOption<ValueType>
     {
         protected OptionType Option { get; }
+        protected ValueType OriginalValue;
 
         ValueType _value;
-        readonly ValueType OriginalValue;
 
         public ValueOptionVM(OptionType option)
             : base()
@@ -27,7 +27,7 @@ namespace Extension.Config.UI
             }
         }
 
-        public void SaveValue()
+        public virtual void SaveValue()
         {
             if (IsValid)
             {
@@ -35,7 +35,7 @@ namespace Extension.Config.UI
             }
         }
 
-        public void SetDefault()
+        public virtual void SetDefault()
         {
             if (IsValid)
             {
@@ -51,7 +51,7 @@ namespace Extension.Config.UI
             }
         }
 
-        public void OnValueClick()
+        public virtual void OnValueClick()
         {
             if (IsValid)
             {
@@ -100,6 +100,46 @@ namespace Extension.Config.UI
 
         [DataSourceProperty]
         public float Max => IsValid ? Option.Max : 0f;
+    }
+
+    class PercentOptionVM : ValueOptionVM<float, PercentOption>
+    {
+        public PercentOptionVM(PercentOption option)
+            : base(option)
+        {
+            if (IsValid)
+            {
+                OriginalValue = Value = option.Value * 100;
+            }
+        }
+
+        public override void SaveValue()
+        {
+            if (IsValid)
+            {
+                Option.Value = Value / 100;
+            }
+        }
+
+        public override void SetDefault()
+        {
+            if (IsValid)
+            {
+                Value = Option.Default * 100;
+            }
+        }
+
+        public override void OnValueClick()
+        {
+            if (IsValid)
+            {
+                ViewModel viewModel = new EditPercentValueVM(Option, (int)Value, value => Value = value);
+                ScreenManager.PushScreen(new EditValueScreen(viewModel));
+            }
+        }
+
+        [DataSourceProperty]
+        public override string AsText => $"{Value}%";
     }
 
     class IntOptionVM : ValueOptionVM<int, IntOption>
@@ -153,6 +193,7 @@ namespace Extension.Config.UI
             FloatOption = new FloatOptionVM(option as FloatOption);
             IntOption = new IntOptionVM(option as IntOption);
             EnumOption = new EnumOptionVM(option as EnumOption);
+            PercentOption = new PercentOptionVM(option as PercentOption);
             RefreshValues();
         }
 
@@ -162,6 +203,7 @@ namespace Extension.Config.UI
             FloatOption.SaveValue();
             IntOption.SaveValue();
             EnumOption.SaveValue();
+            PercentOption.SaveValue();
         }
 
         public void ResetOption()
@@ -170,6 +212,7 @@ namespace Extension.Config.UI
             FloatOption.SetDefault();
             IntOption.SetDefault();
             EnumOption.SetDefault();
+            PercentOption.SetDefault();
         }
 
         [DataSourceProperty]
@@ -186,6 +229,9 @@ namespace Extension.Config.UI
 
         [DataSourceProperty]
         public FloatOptionVM FloatOption { get; }
+
+        [DataSourceProperty]
+        public PercentOptionVM PercentOption { get; }
 
         [DataSourceProperty]
         public IntOptionVM IntOption { get; }

@@ -199,4 +199,33 @@
 			<Style Name="Bold" FontColor="#D69846FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0.1" TextOutlineColor="#D69846FF" FontSize="36" />
 		</Styles>
 	</Brush>
+	<Brush Name="Extension.Option.Value.Text" Font="FiraSansExtraCondensed-Regular" TextVerticalAlignment="Center" TextHorizontalAlignment="Center">
+		<Styles>
+			<Style Name="Default" FontColor="#F2DEB9FF" TextBlur="0" TextGlowColor="#000000FF" TextGlowRadius="0" TextOutlineAmount="0" TextOutlineColor="#000000FF" FontSize="24" />
+		</Styles>
+	</Brush>
+	<Brush Name="Extension.Option.Value.Frame">
+		<Layers>
+			<BrushLayer Name="Canvas" ColorFactor="0.5" Sprite="option_value_background" />
+		</Layers>
+		<Styles>
+			<Style Name="Default">
+				<BrushLayer Name="Canvas" />
+			</Style>
+			<Style Name="Pressed">
+				<BrushLayer Name="Canvas" ColorFactor="0.9" Sprite="option_value_background_hover" />
+			</Style>
+			<Style Name="Hovered">
+				<BrushLayer Name="Canvas" ColorFactor="0.7" Sprite="option_value_background_hover" />
+			</Style>
+			<Style Name="Disabled">
+				<BrushLayer Name="Canvas" ColorFactor="0.3" />
+			</Style>
+		</Styles>
+		<SoundProperties>
+			<EventSounds>
+				<EventSound EventName="Click" Audio="checkbox" />
+			</EventSounds>
+		</SoundProperties>
+	</Brush>
 </Brushes>

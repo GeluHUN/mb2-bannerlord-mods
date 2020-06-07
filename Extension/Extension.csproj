@@ -412,7 +412,4 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="ModuleData\GUI\Brushes\Statistics.xml" />
-  </ItemGroup>
 </Project>

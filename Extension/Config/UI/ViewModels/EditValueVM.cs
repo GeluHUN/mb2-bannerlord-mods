@@ -1,4 +1,5 @@
 ﻿using Extension.Utils;
+using System;
 using TaleWorlds.Engine.Screens;
 using TaleWorlds.Library;
 
@@ -8,13 +9,17 @@ namespace Extension.Config.UI
         where ValueType : struct
         where OptionType : TypedOption<ValueType>
     {
-        OptionType Option { get; }
-        string Text;
+        protected OptionType Option { get; }
+        
         readonly ValueType OriginalValue;
+        readonly Action<ValueType> OnSave;
 
-        public EditValueVM(OptionType option, ValueType value)
+        string Text;
+
+        public EditValueVM(OptionType option, ValueType value, Action<ValueType> onSave)
             : base()
         {
+            OnSave = onSave;
             Option = option;
             Name = option.Name;
             HintText = option.Hint;
@@ -26,7 +31,7 @@ namespace Extension.Config.UI
         {
             if (IsValid)
             {
-                Option.SetValue(Option.MakeValid(Option.FromString(AsText)));
+                OnSave((ValueType)Option.MakeValid(Option.FromString(AsText)));
                 ScreenManager.PopScreen();
             }
         }
@@ -107,6 +112,22 @@ namespace Extension.Config.UI
                                .ToString();
                 }
             }
+        }
+    }
+
+    class EditPercentValueVM : EditValueVM<int, IntOption>
+    {
+        public EditPercentValueVM(PercentOption percentOption, int value, Action<int> onSave)
+            : base(
+                  IntOption.Create(
+                      percentOption.Id,
+                      null,
+                      percentOption.Name,
+                      percentOption.Hint),
+                  value,
+                  onSave)
+        {
+            Option.Set((int)percentOption.Value * 100, (int)percentOption.Default * 100, 0, 100);
         }
     }
 }

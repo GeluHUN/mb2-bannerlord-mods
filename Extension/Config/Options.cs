@@ -272,6 +272,54 @@ namespace Extension.Config
         }
     }
 
+    public class PercentOption : TypedOption<float>
+    {
+        PercentOption(string id, ParentElement parent)
+            : base(id, parent)
+        {
+        }
+
+        public override object FromString(string strValue)
+        {
+            if (float.TryParse(strValue, out float result))
+            {
+                return result;
+            }
+            return null;
+        }
+
+        public override object MakeValid(object value)
+        {
+            return Math.Min(Math.Max((float)value, 0), 1);
+        }
+
+        public override bool IsValid(object value)
+        {
+            if (value != null && value is float)
+            {
+                return (float)value >= 0 && (float)value <= 1;
+            }
+            return false;
+        }
+
+        public static PercentOption Create(string id, ParentElement parent, string name, string hint, float value = default, float defaultValue = default)
+        {
+            return new PercentOption(id, parent)
+            {
+                Name = name,
+                Hint = hint,
+                Value = value,
+                Default = defaultValue
+            };
+        }
+
+        public void Set(float value, float defaultValue = default)
+        {
+            Value = value;
+            Default = defaultValue;
+        }
+    }
+
     public class BoolOption : TypedOption<bool>
     {
         BoolOption(string id, ParentElement parent)
