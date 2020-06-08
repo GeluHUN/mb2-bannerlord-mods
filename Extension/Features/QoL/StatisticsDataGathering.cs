@@ -294,6 +294,8 @@ namespace Extension.Features.QoL
         void OnGameEnd(Game game)
         {
             StatisticsHotKeyCategory.Remove();
+            Module.Instance.GameEndEvent -= OnGameEnd;
+            Module.Instance.ApplicationTickEvent -= OnApplicationTick;
             if (Screen != null)
             {
                 Screen.OnFinalize();

@@ -86,6 +86,8 @@ namespace Extension.Features.QoL
         void OnGameEnd(Game game)
         {
             FasterForwardHotKeyCategory.Remove();
+            Module.Instance.ApplicationTickEvent -= OnApplicationTick;
+            Module.Instance.GameEndEvent -= OnGameEnd;
         }
 
         void OnApplicationTick(float dt)
