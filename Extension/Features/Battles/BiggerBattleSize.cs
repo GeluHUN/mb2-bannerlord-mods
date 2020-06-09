@@ -1,25 +1,35 @@
 ﻿using TaleWorlds.MountAndBlade;
 using Extension.Config;
-using TaleWorlds.CampaignSystem;
+using HarmonyLib;
+using System;
+using TaleWorlds.Core;
 
 namespace Extension.Features.Battles
 {
-    class BiggerBattleSize : CampaignBehaviorExt
+    [HarmonyPatch(typeof(MissionAgentSpawnLogic))]
+    class BiggerBattleSize
     {
-        int MaximumBattleSize => Options.Battles.BattleParams.BiggerBattleSize.MaximumBattleSize.Value;
+        static int OriginalValue;
+        static int MaximumBattleSize => Options.Battles.BattleParams.BiggerBattleSize.MaximumBattleSize.Value;
 
-        protected override void OnSessionLaunched(CampaignGameStarter starter)
+        [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum) })]
+        [HarmonyPrefix]
+        static public void MissionAgentSpawnLogic_Prefix()
         {
-            Module.Instance.MissionBehaviourInitializeEvent += OnMissionBehaviourInitialize;
+            OriginalValue = BannerlordConfig.BattleSize;
+            BannerlordConfig.BattleSize = MaximumBattleSize;
         }
 
-        void OnMissionBehaviourInitialize(Mission mission)
+        [HarmonyPatch(MethodType.Constructor, new Type[] { typeof(IMissionTroopSupplier[]), typeof(BattleSideEnum) })]
+        [HarmonyPostfix]
+        static public void MissionAgentSpawnLogic_Postfix()
         {
-            if (mission.GetMissionBehaviour<FieldBattleController>() != null
-                || mission.GetMissionBehaviour<SiegeMissionController>() != null)
-            {
-                BannerlordConfig.BattleSize = MaximumBattleSize;
-            }
+            BannerlordConfig.BattleSize = OriginalValue;
+        }
+
+        static internal bool Prepare()
+        {
+            return Options.Battles.BattleParams.Group.Enabled;
         }
 
         static internal void Initialize_Configuration()

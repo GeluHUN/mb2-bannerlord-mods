@@ -297,6 +297,8 @@ namespace Extension.Config
                                 .Append("Set the maximum number of troops that can participate in a tactical battle.")
                                 .AppendDoubleLine()
                                 .Append("Default original game value is 500, maximum is 1000.")
+                                .AppendDoubleLine()
+                                .Append("Note, that the original game settings value won't reflect the changes in the options menu.")
                                 .ToString());
                     }
                 }

@@ -51,6 +51,11 @@ namespace Extension.Config.UI
             }
         }
 
+        public virtual void OnEditedValueSaved(ValueType value)
+        {
+            Value = value;
+        }
+
         public virtual void OnValueClick()
         {
             if (IsValid)
@@ -60,7 +65,7 @@ namespace Extension.Config.UI
                         typeof(EditValueVM<ValueType, OptionType>),
                         BindingFlags.Public | BindingFlags.Instance,
                         null,
-                        new object[] { Option, Value },
+                        new object[] { Option, Value, (Action<ValueType>)OnEditedValueSaved },
                         null);
                 ScreenManager.PushScreen(new EditValueScreen(viewModel));
             }
