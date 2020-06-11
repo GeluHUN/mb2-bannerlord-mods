@@ -91,6 +91,45 @@ namespace Extension.Config
                 }
             }
 
+            public static class RoyalArmory
+            {
+                public static string Id => "royalarmory";
+                public static Group Group => Category[Id] as Group;
+
+                static RoyalArmory()
+                {
+                    Group.Create(Id, Category,
+                        name: "Royal armory in towns",
+                        hint: "If enabled then player can buy high tier armor in towns.");
+                }
+            }
+
+            public static class PartyOrders
+            {
+                public static string Id => "partyorders";
+                public static Group Group => Category[Id] as Group;
+
+                static PartyOrders()
+                {
+                    Group.Create(Id, Category,
+                        name: "Party orders",
+                        hint: "If enabled then player has more control over the clan's parties.");
+                }
+            }
+
+            public static class EditClanMembers
+            {
+                public static string Id => "editclanmembers";
+                public static Group Group => Category[Id] as Group;
+
+                static EditClanMembers()
+                {
+                    Group.Create(Id, Category,
+                        name: "Edit clan members",
+                        hint: "If enabled then player can edit clan member attributes even when not in the same party.");
+                }
+            }
+
             public static class Bandits
             {
                 public static string Id => "bandits";

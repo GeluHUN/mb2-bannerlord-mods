@@ -17,6 +17,7 @@ namespace Extension.Features.QoL
                     menu.optionLeaveType = GameMenuOption.LeaveType.Conversation;
                     return PlayerEncounter.Current != null
                            && PlayerEncounter.EncounteredParty != null
+                           && PlayerEncounter.EncounteredParty.MobileParty != null
                            && PlayerEncounter.EncounteredParty.MobileParty.IsBandit;
                 },
                 delegate (MenuCallbackArgs menu)

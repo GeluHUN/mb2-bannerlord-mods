@@ -324,11 +324,14 @@
     <Compile Include="Features\Battles\HumanSize.cs" />
     <Compile Include="Features\Battles\OverheadShields.cs" />
     <Compile Include="Features\CampaignBehaviorExt.cs" />
+    <Compile Include="Features\Campaign\ClanMemberCharacterEditor.cs" />
+    <Compile Include="Features\Campaign\ClanPartyBarter.cs" />
     <Compile Include="Features\Campaign\DonationToNotables.cs" />
     <Compile Include="Features\Campaign\KillingBanditsIncreaseRelations.cs" />
     <Compile Include="Features\Campaign\PersuasionAlwaysSuccesful.cs" />
     <Compile Include="Features\Campaign\Rebellion.cs" />
     <Compile Include="Features\Campaign\StoryModeGenericXpModel.cs" />
+    <Compile Include="Features\Campaign\RoyalArmory.cs" />
     <Compile Include="Features\Campaign\TroopCountLimitModel.cs" />
     <Compile Include="Features\Campaign\TroopTraining.cs" />
     <Compile Include="Features\Campaign\WanderersAreNice.cs" />

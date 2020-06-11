@@ -12,7 +12,8 @@ namespace Extension.Features.Sandbox
 
         public override float GetSurvivalChance(PartyBase party, CharacterObject character, DamageTypes damageType, PartyBase enemyParty = null)
         {
-            if (PlayerTroopsCantDie && PartyBase.MainParty == party)
+            if (PlayerTroopsCantDie
+                && (PartyBase.MainParty == party || party.Owner.Clan == Hero.MainHero.Clan))
             {
                 return 1f;
             }
