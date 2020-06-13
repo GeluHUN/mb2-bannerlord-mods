@@ -589,11 +589,100 @@ namespace Extension.Config
                 public static string Id => "prosperity";
                 public static Group Group => Category[Id] as Group;
 
+                public static class SettlementProsperityModel
+                {
+                    public static string VillageImmigrationRangeId => "villageimmigrationrange";
+                    public static IntOption VillageImmigrationRange => Group[VillageImmigrationRangeId] as IntOption;
+
+                    public static string FoodShortageBaseId => "foodshortagebase";
+                    public static FloatOption FoodShortageBase => Group[FoodShortageBaseId] as FloatOption;
+
+                    public static string LowFoodBaseId => "lowfoodbase";
+                    public static FloatOption LowFoodBase => Group[LowFoodBaseId] as FloatOption;
+
+                    public static string FoodAbundanceBaseId => "foodabundancebase";
+                    public static FloatOption FoodAbundanceBase => Group[FoodAbundanceBaseId] as FloatOption;
+
+                    public static string FoodExcessBaseId => "foodexcessbase";
+                    public static FloatOption FoodExcessBase => Group[FoodExcessBaseId] as FloatOption;
+
+                    static SettlementProsperityModel()
+                    {
+                        IntOption.Create(VillageImmigrationRangeId, Group,
+                            name: "Village immigration range",
+                            hint: "The range of setllements to get immigrants from.");
+                        FloatOption.Create(FoodShortageBaseId, Group,
+                            name: "Food shortage",
+                            hint: new RichtextBuilder()
+                                .Append("If town has food shortage then prosperity is decreased with this value multiplied by the prosperity level plus one.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Food shortage: food stock > 200 and food increase < 0")
+                                .EndStyle()
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: ((properity level+1)*value) - (food change / 5)")
+                                .EndStyle()
+                                .ToString());
+                        FloatOption.Create(LowFoodBaseId, Group,
+                            name: "Low food",
+                            hint: new RichtextBuilder()
+                                .Append("If town is low on food then prosperity is decreased with this value multiplied by the prosperity level plus one.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Low food: food stock < 200 and food increase < 0")
+                                .EndStyle()
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: ((properity level+1)*value) - (food change / 10)")
+                                .EndStyle()
+                                .ToString());
+                        FloatOption.Create(FoodExcessBaseId, Group,
+                            name: "Food excess",
+                            hint: new RichtextBuilder()
+                                .Append("If town has excess food then prosperity is increased with this value multiplied by the prosperity level plus one.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Excess food: food stock > 200 and food increase > 10")
+                                .EndStyle()
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: ((properity level+1)*value) + (food change / 10)")
+                                .EndStyle()
+                                .ToString());
+                        FloatOption.Create(FoodAbundanceBaseId, Group,
+                            name: "Food abundance",
+                            hint: new RichtextBuilder()
+                                .Append("If town has abundant food then prosperity is increased with this value multiplied by the prosperity level plus one.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Abundant food: food stock > 600 and food increase > 20")
+                                .EndStyle()
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: ((properity level+1)*value) + (food change / 5)")
+                                .EndStyle()
+                                .ToString());
+                    }
+                }
+
                 static Prosperity()
                 {
                     Group.Create(Id, Category,
                         name: "Settlement prosperity",
-                        hint: "Modifies the settlement prosperity mechanics.");
+                        hint: new RichtextBuilder()
+                            .Append("Modifies the settlement prosperity mechanics:")
+                            .AppendDoubleLine()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("When towns starve or under siege there is no prosperity increase")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Towns react to the amount of food stock and food change with bigger prosperity changes")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Villages get immigration bonus from nearby towns and castles")
+                            .EndStyle()
+                            .ToString());
                 }
             }
 

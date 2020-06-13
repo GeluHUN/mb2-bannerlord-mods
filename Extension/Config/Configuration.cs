@@ -116,7 +116,11 @@ namespace Extension.Config
                     {
                         if (configValues.TryGetValue($"{category.Id}.{group.Id}.{option.Id}", out string optionValue))
                         {
-                            option.SetValue(option.MakeValid(option.FromString(optionValue)));
+                            object value = option.FromString(optionValue);
+                            if (value != null)
+                            {
+                                option.SetValue(option.MakeValid(value));
+                            }
                         }
                     }
                 }
