@@ -83,7 +83,6 @@ namespace Extension.Features.Campaign
 
         static internal void Initialize_Configuration()
         {
-            Options.Campaign.PartyOrders.Group.Enabled = false;
             Options.Campaign.PartyOrders.Group.Classes.Add(typeof(ClanPartyBarter));
         }
     }

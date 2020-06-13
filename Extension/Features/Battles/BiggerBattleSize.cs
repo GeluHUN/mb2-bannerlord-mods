@@ -35,10 +35,10 @@ namespace Extension.Features.Battles
         static internal void Initialize_Configuration()
         {
             Options.Battles.BattleParams.BiggerBattleSize.MaximumBattleSize.Set(
-                value: 2000,
+                value: 1000,
                 defaultValue: 1000,
                 min: 100,
-                max: 4000);
+                max: 1000);
             Options.Battles.BattleParams.Group.Classes.Add(typeof(BiggerBattleSize));
         }
     }

@@ -61,7 +61,6 @@ namespace Extension.Features.Campaign
 
         static internal void Initialize_Configuration()
         {
-            Options.Campaign.WanderersAreNice.Group.Enabled = false;
             Options.Campaign.WanderersAreNice.Group.Classes.Add(typeof(WanderersAreNice));
         }
     }

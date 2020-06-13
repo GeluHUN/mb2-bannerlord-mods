@@ -1056,7 +1056,7 @@ namespace Extension.Config
                 {
                     Group.Create(Id, Category,
                         name: "Statistics",
-                        hint: "When enabled the game gathers statistical event data.");
+                        hint: "When enabled the game gathers statistical event data. Press CTRL+s to show or hide the overlay window.");
                 }
             }
 

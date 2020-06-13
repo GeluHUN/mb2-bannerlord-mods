@@ -22,7 +22,7 @@ namespace Extension.Features.Campaign
 
         static internal void Initialize_Configuration()
         {
-            Options.Campaign.Persuasion.Group.Enabled = false;
+            Options.Campaign.Persuasion.Group.Enabled = true;
         }
     }
 }

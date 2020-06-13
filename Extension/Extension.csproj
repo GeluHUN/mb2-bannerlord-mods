@@ -394,15 +394,17 @@
 		</ItemGroup>
 		<ItemGroup>
 			<BinFile Include="$(TargetDir)$(TargetFileName)" />
-			<BinFile Include="$(TargetDir)$(TargetName).pdb" />
 			<BinFile Include="$(TargetDir)0Harmony.dll" />
+		</ItemGroup>
+		<ItemGroup Condition="'$(Configuration)' == 'Debug'">
+			<BinFile Include="$(TargetDir)$(TargetName).pdb" />
 		</ItemGroup>
 		<MakeDir Directories="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
 		<MakeDir Directories="$(TargetDir)Extension\ModuleData" />
 		<Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(TargetDir)Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
 		<Move SourceFiles="@(BinFile)" DestinationFolder="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
 	</Target>
-	<Target Name="DeployMB2Module" AfterTargets="CreateMB2Module">
+	<Target Name="DeployMB2Module" AfterTargets="CreateMB2Module" Condition="'$(Configuration)' == 'Debug'">
 		<ItemGroup>
 			<DeployFiles Include="$(TargetDir)\**\*.*" />
 		</ItemGroup>
@@ -428,7 +430,7 @@
 			</Code>
 		</Task>
 	</UsingTask>
-	<Target Name="CreateInstallZip" AfterTargets="CreateMB2Module">
+	<Target Name="CreateInstallZip" AfterTargets="CreateMB2Module" Condition="'$(Configuration)' == 'Release'">
 		<GetVersionParts AssemblyPath="$(TargetDir)Extension\bin\Win64_Shipping_Client\$(TargetFileName)">
 			<Output TaskParameter="MajorVersion" PropertyName="MajorVersionNumber" />
 			<Output TaskParameter="MinorVersion" PropertyName="MinorVersionNumber" />
