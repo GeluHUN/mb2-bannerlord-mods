@@ -397,20 +397,22 @@
       <BinFile Include="$(TargetDir)$(TargetName).pdb" />
       <BinFile Include="$(TargetDir)0Harmony.dll" />
     </ItemGroup>
-    <MakeDir Directories="$(TargetDir)bin\Win64_Shipping_Client" />
-    <MakeDir Directories="$(TargetDir)ModuleData" />
-    <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(TargetDir)\%(RecursiveDir)" SkipUnchangedFiles="true" />
-    <Move SourceFiles="@(BinFile)" DestinationFolder="$(TargetDir)bin\Win64_Shipping_Client" />
-    <ItemGroup>
-      <DeployFiles Include="$(TargetDir)\**\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(GameFolder)\Modules\Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <MakeDir Directories="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
+    <MakeDir Directories="$(TargetDir)Extension\ModuleData" />
+    <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(TargetDir)Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Move SourceFiles="@(BinFile)" DestinationFolder="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
   </Target>
   <Target Name="DeployMB2Module" AfterTargets="CreateMB2Module">
     <ItemGroup>
       <DeployFiles Include="$(TargetDir)\**\*.*" />
     </ItemGroup>
-    <Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(GameFolder)\Modules\Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
+    <Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(GameFolder)\Modules\%(RecursiveDir)" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="CreateInstallZip" AfterTargets="CreateMB2Module">
+    <GetAssemblyIdentity AssemblyFiles="$(TargetDir)Extension\bin\Win64_Shipping_Client\$(TargetFileName)">
+		<Output TaskParameter="Assemblies" ItemName="TargetAssemblyIdentities"/>
+    </GetAssemblyIdentity>
+	<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(SolutionDir)\Nexus\Deploy\Extension-%(TargetAssemblyIdentities.Version).zip" Overwrite="true" />
   </Target>
   <ItemGroup>
     <None Include="packages.config" />
