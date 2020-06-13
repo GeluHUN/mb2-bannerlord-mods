@@ -1,420 +1,442 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
-  <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A8FE4A38-F5BD-45DB-997F-3C21C6BA563C}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <Platforms>x64</Platforms>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Extension</RootNamespace>
-    <AssemblyName>Extension</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <PlatformTarget>x64</PlatformTarget>
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
-    <Optimize>true</Optimize>
-    <DebugSymbols>false</DebugSymbols>
-    <DebugType>none</DebugType>
-    <PlatformTarget>x64</PlatformTarget>
-    <OutputPath>bin\Release\</OutputPath>
-    <IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\packages\Lib.Harmony.2.0.2\lib\net472\0Harmony.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SandBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>SandBox.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SandBox.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>SandBox.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SandBox.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>SandBox.View.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="SandBox.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>SandBox.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>StoryMode.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>StoryMode.View.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="StoryMode.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>StoryMode.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
-    <Reference Include="TaleWorlds.BattlEye.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.BattlEye.Client.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.CampaignSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Core.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Core.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Diamond.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Epic, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Diamond.AccessProvider.Epic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Steam, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Diamond.AccessProvider.Steam.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Diamond.AccessProvider.Test, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Diamond.AccessProvider.Test.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.DotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.DotNet.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.DotNet.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Engine.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Engine.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Engine.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Engine.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.GauntletUI.Data.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.ExtraWidgets, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.PrefabSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.GauntletUI.TooltipExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.GauntletUI.TooltipExtensions.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.InputSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.InputSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Library.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Localization, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Localization.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.Diamond, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.GauntletUI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.View.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.NavigationSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.NavigationSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Network.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.ObjectSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.ObjectSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.PlatformService.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService.Epic, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.PlatformService.Epic.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlatformService.Steam, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.PlatformService.Steam.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PlayerServices, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.PlayerServices.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.PSAI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.PSAI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.SaveSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.SaveSystem.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Starter.DotNetCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Starter.DotNetCore.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.Starter.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.Starter.Library.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.TwoDimension, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.TwoDimension.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="TaleWorlds.TwoDimension.Standalone, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>TaleWorlds.TwoDimension.Standalone.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Config\Configuration.cs" />
-    <Compile Include="Config\OptionData.cs" />
-    <Compile Include="Config\Options.cs" />
-    <Compile Include="Config\UI\EditValueScreen.cs" />
-    <Compile Include="Config\UI\OptionsScreen.cs" />
-    <Compile Include="Config\UI\ViewModels\EditValueVM.cs" />
-    <Compile Include="Config\UI\ViewModels\ExtensionOptionsVM.cs" />
-    <Compile Include="Config\UI\ViewModels\OptionCategoryVM.cs" />
-    <Compile Include="Config\UI\ViewModels\OptionGroupVM.cs" />
-    <Compile Include="Config\UI\ViewModels\OptionVM.cs" />
-    <Compile Include="Config\UI\Widgets\ExtTabToggleWidget.cs" />
-    <Compile Include="Config\UI\Widgets\GroupHeaderWidget.cs" />
-    <Compile Include="Config\UI\Widgets\OptionWidget.cs" />
-    <Compile Include="Features\Battles\BattleAIParameters.cs" />
-    <Compile Include="Features\Battles\BiggerBattleSize.cs" />
-    <Compile Include="Features\Battles\CustomAtmosphere.cs" />
-    <Compile Include="Features\Battles\HumanSize.cs" />
-    <Compile Include="Features\Battles\OverheadShields.cs" />
-    <Compile Include="Features\CampaignBehaviorExt.cs" />
-    <Compile Include="Features\Campaign\ClanMemberCharacterEditor.cs" />
-    <Compile Include="Features\Campaign\ClanPartyBarter.cs" />
-    <Compile Include="Features\Campaign\DonationToNotables.cs" />
-    <Compile Include="Features\Campaign\KillingBanditsIncreaseRelations.cs" />
-    <Compile Include="Features\Campaign\PersuasionAlwaysSuccesful.cs" />
-    <Compile Include="Features\Campaign\Rebellion.cs" />
-    <Compile Include="Features\Campaign\StoryModeGenericXpModel.cs" />
-    <Compile Include="Features\Campaign\RoyalArmory.cs" />
-    <Compile Include="Features\Campaign\TroopCountLimitModel.cs" />
-    <Compile Include="Features\Campaign\TroopTraining.cs" />
-    <Compile Include="Features\Campaign\WanderersAreNice.cs" />
-    <Compile Include="Features\Encyclopedia\EncyclopediaSettlementPage.cs" />
-    <Compile Include="Features\Encyclopedia\EncyclopediaSettlementPageVM.cs" />
-    <Compile Include="Features\Encyclopedia\HeroVM.cs" />
-    <Compile Include="Features\Encyclopedia\TalkToHero.cs" />
-    <Compile Include="Features\Sandbox\SettlementProsperityModel.cs" />
-    <Compile Include="Features\Campaign\SkillTraining.cs" />
-    <Compile Include="Features\Campaign\StrongerHeroAtStart.cs" />
-    <Compile Include="Features\QoL\CivilianSaddles.cs" />
-    <Compile Include="Features\QoL\EncounterTalkMenu.cs" />
-    <Compile Include="Features\QoL\EnterTownWithHorse.cs" />
-    <Compile Include="Features\QoL\FasterForward.cs" />
-    <Compile Include="Features\QoL\SavePartyFormation.cs" />
-    <Compile Include="Features\QoL\SelectHideoutTroops.cs" />
-    <Compile Include="Features\QoL\StatisticsDataGathering.cs" />
-    <Compile Include="Features\QoL\StoryModeEncounterGameMenuModel.cs" />
-    <Compile Include="Features\QoL\UI\StatisticScreen.cs" />
-    <Compile Include="Features\QoL\UI\StatisticVM.cs" />
-    <Compile Include="Features\Sandbox\BoostLordTroops.cs" />
-    <Compile Include="Features\Sandbox\ClanTierModel.cs" />
-    <Compile Include="Features\Sandbox\CombatSimulationModel.cs" />
-    <Compile Include="Features\Sandbox\DonateFoodToLords.cs" />
-    <Compile Include="Features\Sandbox\DonateGoldToTowns.cs" />
-    <Compile Include="Features\Sandbox\MoreMilitiaAtStart.cs" />
-    <Compile Include="Features\Sandbox\PartyHealingModel.cs" />
-    <Compile Include="Features\Sandbox\PrisonerRecruitmentCalculationModel.cs" />
-    <Compile Include="Features\Sandbox\SettlementMilitiaModelEx.cs" />
-    <Compile Include="Features\Sandbox\WorkshopModel.cs" />
-    <Compile Include="Module.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Resource\ResourceManager.cs" />
-    <Compile Include="Resource\TwoDimensionEngineResourceContext.cs" />
-    <Compile Include="Utils\RichtextBuilder.cs" />
-    <Compile Include="Utils\Util.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="ModuleData\**" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ModuleData\bin\Win64_Shipping_Client\" />
-    <Folder Include="ModuleData\ModuleData\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent />
-  </PropertyGroup>
-  <Target Name="DeepClean" AfterTargets="Clean">
-    <RemoveDir Directories="$(TargetDir)" />
-    <RemoveDir Directories="$(ProjectDir)$(IntermediateOutputPath)" />
-    <RemoveDir Directories="$(GameFolder)\Modules\Extension" />
-  </Target>
-  <Target Name="CreateMB2Module" AfterTargets="Build">
-    <ItemGroup>
-      <ModuleFiles Include="ModuleData\**\*.*" />
-    </ItemGroup>
-    <ItemGroup>
-      <BinFile Include="$(TargetDir)$(TargetFileName)" />
-      <BinFile Include="$(TargetDir)$(TargetName).pdb" />
-      <BinFile Include="$(TargetDir)0Harmony.dll" />
-    </ItemGroup>
-    <MakeDir Directories="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
-    <MakeDir Directories="$(TargetDir)Extension\ModuleData" />
-    <Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(TargetDir)Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
-    <Move SourceFiles="@(BinFile)" DestinationFolder="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
-  </Target>
-  <Target Name="DeployMB2Module" AfterTargets="CreateMB2Module">
-    <ItemGroup>
-      <DeployFiles Include="$(TargetDir)\**\*.*" />
-    </ItemGroup>
-    <Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(GameFolder)\Modules\%(RecursiveDir)" SkipUnchangedFiles="true" />
-  </Target>
-  <Target Name="CreateInstallZip" AfterTargets="CreateMB2Module">
-    <GetAssemblyIdentity AssemblyFiles="$(TargetDir)Extension\bin\Win64_Shipping_Client\$(TargetFileName)">
-		<Output TaskParameter="Assemblies" ItemName="TargetAssemblyIdentities"/>
-    </GetAssemblyIdentity>
-	<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(SolutionDir)\Nexus\Deploy\Extension-%(TargetAssemblyIdentities.Version).zip" Overwrite="true" />
-  </Target>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
+	<Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+	<PropertyGroup>
+		<Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+		<Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+		<ProjectGuid>{A8FE4A38-F5BD-45DB-997F-3C21C6BA563C}</ProjectGuid>
+		<OutputType>Library</OutputType>
+		<Platforms>x64</Platforms>
+		<AppDesignerFolder>Properties</AppDesignerFolder>
+		<RootNamespace>Extension</RootNamespace>
+		<AssemblyName>Extension</AssemblyName>
+		<TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+		<FileAlignment>512</FileAlignment>
+		<Deterministic>false</Deterministic>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+		<PlatformTarget>x64</PlatformTarget>
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<Optimize>false</Optimize>
+		<OutputPath>bin\Debug\</OutputPath>
+		<IntermediateOutputPath>obj\Debug\</IntermediateOutputPath>
+		<DefineConstants>DEBUG;TRACE</DefineConstants>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+		<Optimize>true</Optimize>
+		<DebugSymbols>false</DebugSymbols>
+		<DebugType>none</DebugType>
+		<PlatformTarget>x64</PlatformTarget>
+		<OutputPath>bin\Release\</OutputPath>
+		<IntermediateOutputPath>obj\Release\</IntermediateOutputPath>
+		<ErrorReport>prompt</ErrorReport>
+		<WarningLevel>4</WarningLevel>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="0Harmony">
+			<HintPath>..\packages\Lib.Harmony.2.0.2\lib\net472\0Harmony.dll</HintPath>
+			<Private>True</Private>
+		</Reference>
+		<Reference Include="SandBox, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>SandBox.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SandBox.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>SandBox.GauntletUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SandBox.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>SandBox.View.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="SandBox.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>SandBox.ViewModelCollection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="StoryMode, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>E:\SteamLibrary\steamapps\common\Mount &amp; Blade II Bannerlord\Modules\StoryMode\bin\Win64_Shipping_Client\StoryMode.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="StoryMode.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>StoryMode.GauntletUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="StoryMode.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>StoryMode.View.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="StoryMode.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>StoryMode.ViewModelCollection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="System" />
+		<Reference Include="System.Core" />
+		<Reference Include="System.Xml.Linq" />
+		<Reference Include="System.Data.DataSetExtensions" />
+		<Reference Include="Microsoft.CSharp" />
+		<Reference Include="System.Data" />
+		<Reference Include="System.Net.Http" />
+		<Reference Include="System.Xml" />
+		<Reference Include="TaleWorlds.BattlEye.Client, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.BattlEye.Client.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.CampaignSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.CampaignSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.CampaignSystem.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.CampaignSystem.ViewModelCollection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Core.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Core.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Core.ViewModelCollection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Diamond, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Diamond.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Diamond.AccessProvider.Epic, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Diamond.AccessProvider.Epic.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Diamond.AccessProvider.Steam, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Diamond.AccessProvider.Steam.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Diamond.AccessProvider.Test, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Diamond.AccessProvider.Test.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.DotNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.DotNet.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.DotNet.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.DotNet.AutoGenerated.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Engine, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Engine.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Engine.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Engine.AutoGenerated.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Engine.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Engine.GauntletUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.GauntletUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.GauntletUI.Data, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.GauntletUI.Data.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.GauntletUI.ExtraWidgets, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.GauntletUI.ExtraWidgets.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.GauntletUI.PrefabSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.GauntletUI.PrefabSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.GauntletUI.TooltipExtensions, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.GauntletUI.TooltipExtensions.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.InputSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.InputSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Library.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Localization, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Localization.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.AutoGenerated, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.AutoGenerated.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.Diamond, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.Diamond.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.GauntletUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.GauntletUI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.GauntletUI.Widgets, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.GauntletUI.Widgets.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.Helpers, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.Helpers.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.View, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.View.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.MountAndBlade.ViewModelCollection, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.MountAndBlade.ViewModelCollection.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.NavigationSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.NavigationSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Network, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Network.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.ObjectSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.ObjectSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.PlatformService, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.PlatformService.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.PlatformService.Epic, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.PlatformService.Epic.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.PlatformService.Steam, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.PlatformService.Steam.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.PlayerServices, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.PlayerServices.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.PSAI, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.PSAI.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.SaveSystem, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.SaveSystem.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Starter.DotNetCore, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Starter.DotNetCore.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.Starter.Library, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.Starter.Library.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.TwoDimension, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.TwoDimension.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+		<Reference Include="TaleWorlds.TwoDimension.Standalone, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>TaleWorlds.TwoDimension.Standalone.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="Config\Configuration.cs" />
+		<Compile Include="Config\OptionData.cs" />
+		<Compile Include="Config\Options.cs" />
+		<Compile Include="Config\UI\EditValueScreen.cs" />
+		<Compile Include="Config\UI\OptionsScreen.cs" />
+		<Compile Include="Config\UI\ViewModels\EditValueVM.cs" />
+		<Compile Include="Config\UI\ViewModels\ExtensionOptionsVM.cs" />
+		<Compile Include="Config\UI\ViewModels\OptionCategoryVM.cs" />
+		<Compile Include="Config\UI\ViewModels\OptionGroupVM.cs" />
+		<Compile Include="Config\UI\ViewModels\OptionVM.cs" />
+		<Compile Include="Config\UI\Widgets\ExtTabToggleWidget.cs" />
+		<Compile Include="Config\UI\Widgets\GroupHeaderWidget.cs" />
+		<Compile Include="Config\UI\Widgets\OptionWidget.cs" />
+		<Compile Include="Features\Battles\BattleAIParameters.cs" />
+		<Compile Include="Features\Battles\BiggerBattleSize.cs" />
+		<Compile Include="Features\Battles\CustomAtmosphere.cs" />
+		<Compile Include="Features\Battles\HumanSize.cs" />
+		<Compile Include="Features\Battles\OverheadShields.cs" />
+		<Compile Include="Features\CampaignBehaviorExt.cs" />
+		<Compile Include="Features\Campaign\ClanMemberCharacterEditor.cs" />
+		<Compile Include="Features\Campaign\ClanPartyBarter.cs" />
+		<Compile Include="Features\Campaign\DonationToNotables.cs" />
+		<Compile Include="Features\Campaign\KillingBanditsIncreaseRelations.cs" />
+		<Compile Include="Features\Campaign\PersuasionAlwaysSuccesful.cs" />
+		<Compile Include="Features\Campaign\Rebellion.cs" />
+		<Compile Include="Features\Campaign\StoryModeGenericXpModel.cs" />
+		<Compile Include="Features\Campaign\RoyalArmory.cs" />
+		<Compile Include="Features\Campaign\TroopCountLimitModel.cs" />
+		<Compile Include="Features\Campaign\TroopTraining.cs" />
+		<Compile Include="Features\Campaign\WanderersAreNice.cs" />
+		<Compile Include="Features\Encyclopedia\EncyclopediaSettlementPage.cs" />
+		<Compile Include="Features\Encyclopedia\EncyclopediaSettlementPageVM.cs" />
+		<Compile Include="Features\Encyclopedia\HeroVM.cs" />
+		<Compile Include="Features\Encyclopedia\TalkToHero.cs" />
+		<Compile Include="Features\Sandbox\SettlementProsperityModel.cs" />
+		<Compile Include="Features\Campaign\SkillTraining.cs" />
+		<Compile Include="Features\Campaign\StrongerHeroAtStart.cs" />
+		<Compile Include="Features\QoL\CivilianSaddles.cs" />
+		<Compile Include="Features\QoL\EncounterTalkMenu.cs" />
+		<Compile Include="Features\QoL\EnterTownWithHorse.cs" />
+		<Compile Include="Features\QoL\FasterForward.cs" />
+		<Compile Include="Features\QoL\SavePartyFormation.cs" />
+		<Compile Include="Features\QoL\SelectHideoutTroops.cs" />
+		<Compile Include="Features\QoL\StatisticsDataGathering.cs" />
+		<Compile Include="Features\QoL\StoryModeEncounterGameMenuModel.cs" />
+		<Compile Include="Features\QoL\UI\StatisticScreen.cs" />
+		<Compile Include="Features\QoL\UI\StatisticVM.cs" />
+		<Compile Include="Features\Sandbox\BoostLordTroops.cs" />
+		<Compile Include="Features\Sandbox\ClanTierModel.cs" />
+		<Compile Include="Features\Sandbox\CombatSimulationModel.cs" />
+		<Compile Include="Features\Sandbox\DonateFoodToLords.cs" />
+		<Compile Include="Features\Sandbox\DonateGoldToTowns.cs" />
+		<Compile Include="Features\Sandbox\MoreMilitiaAtStart.cs" />
+		<Compile Include="Features\Sandbox\PartyHealingModel.cs" />
+		<Compile Include="Features\Sandbox\PrisonerRecruitmentCalculationModel.cs" />
+		<Compile Include="Features\Sandbox\SettlementMilitiaModelEx.cs" />
+		<Compile Include="Features\Sandbox\WorkshopModel.cs" />
+		<Compile Include="Module.cs" />
+		<Compile Include="Properties\AssemblyInfo.cs" />
+		<Compile Include="Resource\ResourceManager.cs" />
+		<Compile Include="Resource\TwoDimensionEngineResourceContext.cs" />
+		<Compile Include="Utils\RichtextBuilder.cs" />
+		<Compile Include="Utils\Util.cs" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="README.md" />
+	</ItemGroup>
+	<ItemGroup>
+		<None Include="ModuleData\**" />
+	</ItemGroup>
+	<ItemGroup>
+		<Folder Include="ModuleData\bin\Win64_Shipping_Client\" />
+		<Folder Include="ModuleData\ModuleData\" />
+	</ItemGroup>
+	<Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+	<PropertyGroup>
+		<PostBuildEvent />
+	</PropertyGroup>
+	<Target Name="DeepClean" AfterTargets="Clean">
+		<RemoveDir Directories="$(TargetDir)" />
+		<RemoveDir Directories="$(ProjectDir)$(IntermediateOutputPath)" />
+		<RemoveDir Directories="$(GameFolder)\Modules\Extension" />
+	</Target>
+	<Target Name="CreateMB2Module" AfterTargets="Build">
+		<ItemGroup>
+			<ModuleFiles Include="ModuleData\**\*.*" />
+		</ItemGroup>
+		<ItemGroup>
+			<BinFile Include="$(TargetDir)$(TargetFileName)" />
+			<BinFile Include="$(TargetDir)$(TargetName).pdb" />
+			<BinFile Include="$(TargetDir)0Harmony.dll" />
+		</ItemGroup>
+		<MakeDir Directories="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
+		<MakeDir Directories="$(TargetDir)Extension\ModuleData" />
+		<Copy SourceFiles="@(ModuleFiles)" DestinationFolder="$(TargetDir)Extension\%(RecursiveDir)" SkipUnchangedFiles="true" />
+		<Move SourceFiles="@(BinFile)" DestinationFolder="$(TargetDir)Extension\bin\Win64_Shipping_Client" />
+	</Target>
+	<Target Name="DeployMB2Module" AfterTargets="CreateMB2Module">
+		<ItemGroup>
+			<DeployFiles Include="$(TargetDir)\**\*.*" />
+		</ItemGroup>
+		<Copy SourceFiles="@(DeployFiles)" DestinationFolder="$(GameFolder)\Modules\%(RecursiveDir)" SkipUnchangedFiles="true" />
+	</Target>
+	<UsingTask  TaskName="GetVersionParts" TaskFactory="CodeTaskFactory" AssemblyFile="$(MSBuildToolsPath)\Microsoft.Build.Tasks.v4.0.dll">
+		<ParameterGroup>
+			<AssemblyPath ParameterType="System.String" Required="true" />
+			<MajorVersion ParameterType="System.Int32" Output="true" />
+			<MinorVersion ParameterType="System.Int32" Output="true" />
+			<BuildVersion ParameterType="System.Int32" Output="true" />
+		</ParameterGroup>
+		<Task>
+			<Using Namespace="System.Diagnostics" />
+			<Code Type="Fragment" Language="cs">
+				<![CDATA[
+					Log.LogMessage("Getting version details of assembly at: " + this.AssemblyPath, MessageImportance.High);
+					Version v = Version.Parse(FileVersionInfo.GetVersionInfo(this.AssemblyPath).FileVersion);
+					this.MajorVersion = v.Major;
+					this.MinorVersion = v.Minor;
+					this.BuildVersion = v.Build;
+				]]>
+			</Code>
+		</Task>
+	</UsingTask>
+	<Target Name="CreateInstallZip" AfterTargets="CreateMB2Module">
+		<GetVersionParts AssemblyPath="$(TargetDir)Extension\bin\Win64_Shipping_Client\$(TargetFileName)">
+			<Output TaskParameter="MajorVersion" PropertyName="MajorVersionNumber" />
+			<Output TaskParameter="MinorVersion" PropertyName="MinorVersionNumber" />
+			<Output TaskParameter="BuildVersion" PropertyName="BuildVersionNumber" />
+		</GetVersionParts>
+		<ZipDirectory SourceDirectory="$(TargetDir)" DestinationFile="$(SolutionDir)\Nexus\Deploy\Extension-$(MajorVersionNumber).$(MinorVersionNumber).$(BuildVersionNumber).zip" Overwrite="true" />
+	</Target>
+	<ItemGroup>
+		<None Include="packages.config" />
+	</ItemGroup>
 </Project>
