@@ -76,8 +76,8 @@ namespace Extension.Features.Battles
         static internal void Initialize_Configuration()
         {
             Options.Battles.BattleParams.BattleAIParameters.EnableHoldTheShieldHigh.Set(
-                value: true,
-                defaultValue: true);
+                value: false,
+                defaultValue: false);
         }
     }
 }

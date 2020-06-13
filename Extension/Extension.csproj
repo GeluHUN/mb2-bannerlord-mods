@@ -335,10 +335,10 @@
     <Compile Include="Features\Campaign\TroopCountLimitModel.cs" />
     <Compile Include="Features\Campaign\TroopTraining.cs" />
     <Compile Include="Features\Campaign\WanderersAreNice.cs" />
-    <Compile Include="Features\Ecyclopedia\EncyclopediaSettlementPage.cs" />
-    <Compile Include="Features\Ecyclopedia\EncyclopediaSettlementPageVM.cs" />
-    <Compile Include="Features\Ecyclopedia\HeroVM.cs" />
-    <Compile Include="Features\Ecyclopedia\TalkToHero.cs" />
+    <Compile Include="Features\Encyclopedia\EncyclopediaSettlementPage.cs" />
+    <Compile Include="Features\Encyclopedia\EncyclopediaSettlementPageVM.cs" />
+    <Compile Include="Features\Encyclopedia\HeroVM.cs" />
+    <Compile Include="Features\Encyclopedia\TalkToHero.cs" />
     <Compile Include="Features\Sandbox\SettlementProsperityModel.cs" />
     <Compile Include="Features\Campaign\SkillTraining.cs" />
     <Compile Include="Features\Campaign\StrongerHeroAtStart.cs" />

@@ -2,141 +2,69 @@
 
 ## Game version and compatibility
 
-This mod only works with game version **e1.4.X**!
+This mod only works with game version **e1.4.2**.
 
-This mod is not save game compatible, and you **must start a new game** after installing this mod for the first time!
+This mod is not save game compatible.
 
-It is not recommended to use any other none official mods beside the mentioned ones below!
+If you use the clan features then **must start a new game** after installing this mod for the first time.
+
+It is not recommended to use any other mods beside the ones mentioned below.
 
 ## Features
 
-#### Clans tier increase
+For all the features check the Extension options from the main screen. Every feature can be asjusted or even truned off in the options.
 
-Clans maximum tier is increased to 10 from 6. The clan party, companion and workshop limit is increased.
-
-* Maximum clan tier is 10
-* Party, companion and workshop limit = (level + 1) x 2
-
-#### Talk to heroes from the Encyclopedia
-
-You can talk to heroes directly from the Encyclopedia. The talk is not instant and if the hero is occupied by something else you may haveto wait for a little. They will contact you when they are available! You can request multiple heros to talk to.
-
-#### Settlement economy information in the Encyclopedia
-
-Encyclopedia now shows economy information on the settlement pages.
-
-Information showed:
-* Settlement economy status: boom and prosperity level
-* Town workshop information: owner, profit, consumed and produced goods
-* Castle and town bound villages' productions
-* Village production: primary production and other daily productions
-
-#### Hideout encounter changes
-
-Troop limit in hideouts is increased to 20 from 10.
-
-Troops and heros are chosen respecting the party screen's troop ordering from top to down.
-
-#### Train your skills in the towns
-
-New skill trainers are in the towns, offering their services for the right sum of gold. A train session is a day long and after your hero will haveto rest another day.
-
-Costs and experiance gained:
-* For a skill below level 50 a session costs 500 gold and gives 50 xp
-* For a skill level between 50 and 99 a session costs 1000 gold and gives 100 xp
-* For a skill level between 100 and 149 a session costs 5000 gold and gives 500 xp
-* For a skill level above 150 a session costs 10000 gold and gives 1000 xp
-
-The gained experiance is multipled by your hero's curent skill multipler.
-
-#### Train your troops in the Training field
-
-Your party can rent the Training field for a day to use it for gold. A train session is a day long and after your troops will haveto rest another day. Your troops can get wounded during the excersice.
-
-Costs and experiance gained:
-* Troop tier x 10 x number of healty troops + 20%
-* Regardless of troop tier every troop gains 25 xp every hour during the training
-* Troops havea a 5% chance to become wounded
-
-#### Simulated battles with looters
-
-Looters can't kill anyone in simulated battles.
-
-#### Killing bandits raise relations
-
-* Each defeated Looter gives 0.1 realtion increase with notables in nearby settlements.
-* Each defeated Bandit gives 0.2 realtion increase with notables in nearby settlements.
-
-#### Battle changes
-
-* Every battle is played at noon regardless of actual game time
-* Troops are much more defensive (x2 of original)
-
-#### Starting encounters
-
-At every encounter instead of going to talk to the opposing hero at the start, you get the game menu with a possible "Talk" option to be used.
-
-#### Fast forward changes
-
-You can change the fast forward speed on the map screen by pressing the CTRL and 1..4 keys.
-
-Shortcut keys and time acceleration:
-* CTRL+1 = x4 time (original)
-* CTRL+2 = x8 fast forward time
-* CTRL+3 = x16 fast forward time
-* CTRL+4 = x32 fast forward time
-
-#### Prosperity changes
-
-Town and castle prosperity change is bound to available food stocks and food change.
-
-Changes in addition to the original game mechanics:
-* Starving settlement looses 10% prosperity daily
-* Sieged settlement looses 5% prosperity daily
-* If food stock less then 100, and
-	* food change is negative then the settlement looses 5% prosperity daily
-	* food change is prositive then the settlement looses 5% of the prosperity growth daily
-* If food stock is between 100 and 200, and
-	* food change is negative then the settlement looses 3% prosperity daily
-	* food change is prositive then the settlement looses 3% of the prosperity growth daily
-* If food stock is between 200 and 300, and
-	* food change is negative then the settlement looses 2% prosperity daily
-	* food change is prositive then the settlement looses 2% of the prosperity growth daily
-* If food stock is above 300, and
-	* food change is negative then the settlement looses 1% prosperity daily
-	* food change is prositive then the settlement gains 20% of the prosperity growth daily
-
-#### Militia increase
-
-There are more and better militia units everywhere.
-
-Militia changes:
-* Militia elite spawn rate is increased by 20%.
-* Militia change rate is increased if the settlement's owner clan is at war with anyone.
-* Starting a new game there are more militia utnis with half of them already elite.
-
-#### Rebellion
-
-The game rebellion mechanic is enabled.
-
-#### NPC lords
-
-NPC lords who have tier 0 and 1 troops will get enough experience to these troops to be able to level them all up every day. Actual leveling up is done by the AI. 
-
-NPC lords can't starve now, if they are below 10 gold and have no food left, then they get 5 days worth of grain.
+Here is a short list of current features:
+* Campaign changes
+  * Donate gold to notables for reputation increase
+  * Be able to train hero skills for gold in towns
+  * Be able to train troops in the training field for gold
+  * Killing looters and bandits increases nearby notable's relation
+  * Rebellions
+  * Royal armory in towns
+  * Gain experiance in the training field
+  * Trade with clan parties
+  * Can level up every clan member
+  * Upgrade hero at the start (cheat)
+  * All wanderers are nice (cheat)
+  * Persiation always succeeds (cheat)
+* Sandbox changes
+  * Clan maximum level is up to 10
+  * Clan maximum resource size changes
+  * Settlement prosperity changes
+  * Simulated battle changes (some are cheat)
+  * Boost AI lords (troops, food, gold - cheats)
+  * Adjusted militia rates
+  * Adjusted prisoner recruitment rates
+* Quality of life changes
+  * Civilian saddles, can enter towns on horse
+  * Party formation is saved
+  * Isntant battle available with bandits
+  * Choose hideout assault troops
+  * Faster forward time
+  * Kingdom statistic overlay
+* Battle changes
+  * Adjusted troop defensiveness
+  * Alwys battle at the same time
+  * Every shield can be held overhead
+  * Human size increased
+  * Bigger battle size
+* Encyclopedia changes
+  * More settlement filters
+  * Settlement economy information
+  * Talk to any hero from the hero page
 
 ## Included mods
 
-* [Noble Troops](https://www.nexusmods.com/mountandblade2bannerlord/mods/202) from [AshZey](https://www.nexusmods.com/mountandblade2bannerlord/users/1025831) is included in this mod.
+None at the moment
 
 ## Compatible mods
 
-* [Dro's Lighting Improvements](https://www.nexusmods.com/mountandblade2bannerlord/mods/6) from [Drogean](https://www.nexusmods.com/mountandblade2bannerlord/users/79933) is being used without any problems with this mod.
-* [NPC Revamp](https://www.nexusmods.com/mountandblade2bannerlord/mods/21) from [Vendarr](https://www.nexusmods.com/mountandblade2bannerlord/users/34873) is being used without any problems with this mod.
+Unknown at the moment
 
 ## Credits
 
-My solutions are my own, but credit where credit's due: to the original ideas and mod creators! Thank you very much all of you for the inspiration!
+My (implementation-) solutions are my own, but credit where credit's due: for the original feature ideas to some mod creators! Thank you very much all of you for the inspirations!
 
 * Tweaking the game with [Bannerlord Tweaks](https://www.nexusmods.com/mountandblade2bannerlord/mods/49) from [mildeww](https://www.nexusmods.com/mountandblade2bannerlord/users/1159298)
 * Faster game encounters with [Fast Dialogue](https://www.nexusmods.com/mountandblade2bannerlord/mods/68) from [Dallen1393](https://www.nexusmods.com/mountandblade2bannerlord/users/85685243)
@@ -147,3 +75,8 @@ My solutions are my own, but credit where credit's due: to the original ideas an
 * Chaning combat parameters with [Light Combat Mod Collection](https://www.nexusmods.com/mountandblade2bannerlord/mods/1121) from [sgsdxzy](https://www.nexusmods.com/mountandblade2bannerlord/users/33526760)
 * Changing the time of battle with [Let's Battle In The Morning](https://www.nexusmods.com/mountandblade2bannerlord/mods/1126) from [kisukuy](https://www.nexusmods.com/mountandblade2bannerlord/users/8642876)
 * Geting relation increase with [Kill Bandits Raise Relations](https://www.nexusmods.com/mountandblade2bannerlord/mods/500) from [Clickers2223](https://www.nexusmods.com/mountandblade2bannerlord/users/61177901)
+* Faction armouries in towns with [V's Faction Armouries](https://www.nexusmods.com/mountandblade2bannerlord/mods/1301) from [MindfulDroid](https://www.nexusmods.com/mountandblade2bannerlord/users/29760200)
+* Troop collision changes with [Troop Collision and siege tower and castle stairs fix](https://www.nexusmods.com/mountandblade2bannerlord/mods/495) from [Jackthebiatch](https://www.nexusmods.com/mountandblade2bannerlord/users/5920000)
+* Shield changes with [Realistic Shield Usage](https://www.nexusmods.com/mountandblade2bannerlord/mods/1701) from [unstableai](https://www.nexusmods.com/mountandblade2bannerlord/users/89847878)
+* Hideout troop selection with [Hideout Roster](https://www.nexusmods.com/mountandblade2bannerlord/mods/1617) from [grizmul](https://www.nexusmods.com/mountandblade2bannerlord/users/41175625)
+* Battle size change with [Battle Size Unlocker](https://www.nexusmods.com/mountandblade2bannerlord/mods/542) from [petiti06](https://www.nexusmods.com/mountandblade2bannerlord/users/5842176)
