@@ -18,7 +18,7 @@ How you can use this mod:
 * Play together with some other mods while disabling those Extension features you don't like or need. I can not guarantee compatibility with other mods though and I can not support this type of usage!
  * As a mod programmer to understand how to write mods for Bannerlord.
 
-Full source code available here: [source on github.com](https://github.com/GeluHUN/mb2-bannerlord-mods)
+Full source code available here: [source on github.com](https://github.com/GeluHUN/mb2-bannerlord-mods)
 
 
 ## Features
