@@ -22,7 +22,7 @@ namespace Extension.Features.Sandbox
         public override float CalculateMilitiaChange(Settlement settlement, StatExplainer explanation)
         {
             float result = base.CalculateMilitiaChange(settlement, explanation);
-            ExplainedNumber explainedNumber = new ExplainedNumber(result, explanation, null);
+            ExplainedNumber explainedNumber = new ExplainedNumber(0, explanation, null);
             float extraRate = WartimeRecruitmentRate;
             if (extraRate > 1 && FactionManager.Instance.FindCampaignWarsOfFaction(settlement.OwnerClan).Any())
             {

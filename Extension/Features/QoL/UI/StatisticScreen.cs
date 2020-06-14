@@ -10,7 +10,7 @@ namespace Extension.Features.QoL.UI
     {
         readonly StatisticVM DataSource;
         readonly GauntletMovie Movie;
-        bool Visible = true;
+        bool Visible = false;
 
         public StatisticScreen()
         {

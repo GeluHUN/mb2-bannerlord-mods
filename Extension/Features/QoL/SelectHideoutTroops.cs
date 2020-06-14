@@ -8,6 +8,7 @@ using TaleWorlds.CampaignSystem.GameMenus;
 using TaleWorlds.Core;
 using TaleWorlds.Localization;
 using Extension.Utils;
+using TaleWorlds.CampaignSystem.ViewModelCollection;
 
 namespace Extension.Features.QoL
 {
@@ -86,11 +87,18 @@ namespace Extension.Features.QoL
             {
                 foreach (CharacterObject troop in SelectedTroops.Troops.ToList())
                 {
-                    int max = MobileParty.MainParty.MemberRoster.GetTroopCount(troop);
                     int current = SelectedTroops.GetTroopCount(troop);
-                    if (current > max)
+                    if (MobileParty.MainParty.MemberRoster.Contains(troop))
                     {
-                        SelectedTroops.RemoveTroop(troop, current - max);
+                        int max = MobileParty.MainParty.MemberRoster.GetTroopCount(troop);
+                        if (current > max)
+                        {
+                            SelectedTroops.RemoveTroop(troop, current - max);
+                        }
+                    }
+                    else
+                    {
+                        SelectedTroops.RemoveTroop(troop, current);
                     }
                 }
                 SelectedTroops.RemoveZeroCounts();
@@ -132,6 +140,13 @@ namespace Extension.Features.QoL
             {
                 MobileParty.MainParty.MemberRoster.ToFlattenedRoster()
             };
+            foreach (TroopRosterElement element in leftSide)
+            {
+                if (rightSide.Contains(element.Character))
+                {
+                    rightSide.RemoveTroop(element.Character, element.Number);
+                }
+            }
             return (leftSide, rightSide);
         }
 
@@ -174,6 +189,24 @@ namespace Extension.Features.QoL
                     }
                 }
             }
+        }
+
+        static internal bool Prepare()
+        {
+            return Options.QoL.SelecHideoutTroops.Group.Enabled;
+        }
+    }
+
+    [HarmonyPatch(typeof(PartyVM))]
+    class PartyVMPatch
+    {
+        [HarmonyPatch("RefreshValues")]
+        [HarmonyPostfix]
+        static internal void RefreshValues_Postfix(PartyVM __instance)
+        {
+            Traverse.Create(__instance)
+                .Method("RefreshPartyInformation")
+                .GetValue();
         }
 
         static internal bool Prepare()

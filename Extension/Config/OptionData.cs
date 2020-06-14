@@ -333,6 +333,10 @@ namespace Extension.Config
                         IntOption.Create(MaximumBattleSizeId, Group,
                             name: "Battle size",
                             hint: new RichtextBuilder()
+                                .StartStyle("Red")
+                                .Append("Currently not working, causes a crash when above 1000")
+                                .EndStyle()
+                                .AppendDoubleLine()
                                 .Append("Set the maximum number of troops that can participate in a tactical battle.")
                                 .AppendDoubleLine()
                                 .Append("Default original game value is 500, maximum is 1000.")
@@ -395,6 +399,10 @@ namespace Extension.Config
                         BoolOption.Create(EnableHoldTheShieldHighId, Group,
                             name: "Use the shield",
                             hint: new RichtextBuilder()
+                                .StartStyle("Red")
+                                .Append("Currently not working")
+                                .EndStyle()
+                                .AppendDoubleLine()
                                 .Append("If enabled troops use the shield in these cases too:")
                                 .AppendDoubleLine()
                                 .StartStyle("Smaller")
@@ -597,6 +605,12 @@ namespace Extension.Config
                     public static string FoodShortageBaseId => "foodshortagebase";
                     public static FloatOption FoodShortageBase => Group[FoodShortageBaseId] as FloatOption;
 
+                    public static string UnderSiegeBaseId => "undersiegebase";
+                    public static FloatOption UnderSiegeBase => Group[UnderSiegeBaseId] as FloatOption;
+
+                    public static string StarvingBaseId => "starvingbase";
+                    public static FloatOption StarvingBase => Group[StarvingBaseId] as FloatOption;
+
                     public static string LowFoodBaseId => "lowfoodbase";
                     public static FloatOption LowFoodBase => Group[LowFoodBaseId] as FloatOption;
 
@@ -611,17 +625,41 @@ namespace Extension.Config
                         IntOption.Create(VillageImmigrationRangeId, Group,
                             name: "Village immigration range",
                             hint: "The range of setllements to get immigrants from.");
+                        FloatOption.Create(UnderSiegeBaseId, Group,
+                            name: "Under siege",
+                            hint: new RichtextBuilder()
+                                .Append("If town is under siege then prosperity is decreased with this value multiplied by the prosperity level plus one.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: -value * (properity level + 1)")
+                                .EndStyle()
+                                .ToString());
+                        FloatOption.Create(StarvingBaseId, Group,
+                            name: "Starving",
+                            hint: new RichtextBuilder()
+                                .Append("If town is starving then prosperity is decreased with this value multiplied by the prosperity level plus one.")
+                                .AppendLine()
+                                .Append("Note, that the original game already decreases the prosperity by food change / 2 when the town is starving.")
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Starving: food stock < 0 and food change < 0")
+                                .EndStyle()
+                                .AppendDoubleLine()
+                                .StartStyle("Explanation")
+                                .Append("Formula: -value * (properity level + 1)")
+                                .EndStyle()
+                                .ToString());
                         FloatOption.Create(FoodShortageBaseId, Group,
                             name: "Food shortage",
                             hint: new RichtextBuilder()
                                 .Append("If town has food shortage then prosperity is decreased with this value multiplied by the prosperity level plus one.")
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Food shortage: food stock > 200 and food increase < 0")
+                                .Append("Food shortage: food stock > 200 and food change < 0")
                                 .EndStyle()
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Formula: ((properity level+1)*value) - (food change / 5)")
+                                .Append("Formula: value * (-properity level + food change / 5)")
                                 .EndStyle()
                                 .ToString());
                         FloatOption.Create(LowFoodBaseId, Group,
@@ -630,11 +668,11 @@ namespace Extension.Config
                                 .Append("If town is low on food then prosperity is decreased with this value multiplied by the prosperity level plus one.")
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Low food: food stock < 200 and food increase < 0")
+                                .Append("Low food: food stock < 200 and food change < 0")
                                 .EndStyle()
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Formula: ((properity level+1)*value) - (food change / 10)")
+                                .Append("Formula: value * (-properity level + food change / 10)")
                                 .EndStyle()
                                 .ToString());
                         FloatOption.Create(FoodExcessBaseId, Group,
@@ -643,11 +681,11 @@ namespace Extension.Config
                                 .Append("If town has excess food then prosperity is increased with this value multiplied by the prosperity level plus one.")
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Excess food: food stock > 200 and food increase > 10")
+                                .Append("Excess food: food stock > 200 and food change > 10")
                                 .EndStyle()
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Formula: ((properity level+1)*value) + (food change / 10)")
+                                .Append("Formula: value * (properity level + food change / 10)")
                                 .EndStyle()
                                 .ToString());
                         FloatOption.Create(FoodAbundanceBaseId, Group,
@@ -656,11 +694,11 @@ namespace Extension.Config
                                 .Append("If town has abundant food then prosperity is increased with this value multiplied by the prosperity level plus one.")
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Abundant food: food stock > 600 and food increase > 20")
+                                .Append("Abundant food: food stock > 600 and food change > 20")
                                 .EndStyle()
                                 .AppendDoubleLine()
                                 .StartStyle("Explanation")
-                                .Append("Formula: ((properity level+1)*value) + (food change / 5)")
+                                .Append("Formula: value * (properity level + food change / 5)")
                                 .EndStyle()
                                 .ToString());
                     }

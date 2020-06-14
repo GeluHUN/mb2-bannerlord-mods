@@ -16,10 +16,17 @@ namespace Extension.Features.Sandbox
 
         public float GetChange(Town town, StatExplainer explanation, float baseChange)
         {
-            ExplainedNumber explainedNumber = new ExplainedNumber(0, explanation, null);
             float value = GetChangeValue(town, baseChange);
-            explainedNumber.Add(value, new TextObject(Text, null));
-            return explainedNumber.ResultNumber;
+            if (value != 0)
+            {
+                ExplainedNumber explainedNumber = new ExplainedNumber(0, explanation, null);
+                explainedNumber.Add(value, new TextObject(Text, null));
+                return explainedNumber.ResultNumber;
+            }
+            else
+            {
+                return 0;
+            }
         }
 
         protected abstract float GetChangeValue(Town town, float baseChange);
@@ -63,27 +70,16 @@ namespace Extension.Features.Sandbox
     {
         protected override string Text => "Starving";
 
-        public override bool IsValid(Town fortification)
+        static float StarvingBase => Options.Sandbox.Prosperity.SettlementProsperityModel.StarvingBase.Value;
+
+        public override bool IsValid(Town town)
         {
-            return fortification.Settlement.IsStarving;
+            return town.Settlement.IsStarving;
         }
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            float prosperityChangePercent = 0;
-            switch (town.GetProsperityLevel())
-            {
-                case SettlementComponent.ProsperityLevel.High:
-                    prosperityChangePercent = 0.05f;
-                    break;
-                case SettlementComponent.ProsperityLevel.Mid:
-                    prosperityChangePercent = 0.04f;
-                    break;
-                case SettlementComponent.ProsperityLevel.Low:
-                    prosperityChangePercent = 0.03f;
-                    break;
-            }
-            return town.Prosperity * prosperityChangePercent;
+            return -StarvingBase * ((int)town.GetProsperityLevel() + 1);
         }
     }
 
@@ -91,27 +87,16 @@ namespace Extension.Features.Sandbox
     {
         protected override string Text => "Under siege";
 
-        public override bool IsValid(Town fortification)
+        static float UnderSiegeBase => Options.Sandbox.Prosperity.SettlementProsperityModel.UnderSiegeBase.Value;
+
+        public override bool IsValid(Town town)
         {
-            return fortification.Settlement.IsStarving;
+            return town.Settlement.IsUnderSiege;
         }
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            float prosperityChangePercent = 0;
-            switch (town.GetProsperityLevel())
-            {
-                case SettlementComponent.ProsperityLevel.High:
-                    prosperityChangePercent = 0.003f;
-                    break;
-                case SettlementComponent.ProsperityLevel.Mid:
-                    prosperityChangePercent = 0.002f;
-                    break;
-                case SettlementComponent.ProsperityLevel.Low:
-                    prosperityChangePercent = 0.01f;
-                    break;
-            }
-            return town.Prosperity * prosperityChangePercent;
+            return -UnderSiegeBase * ((int)town.GetProsperityLevel() + 1);
         }
     }
 
@@ -121,14 +106,14 @@ namespace Extension.Features.Sandbox
 
         static float LowFoodBase => Options.Sandbox.Prosperity.SettlementProsperityModel.LowFoodBase.Value;
 
-        public override bool IsValid(Town fortification)
+        public override bool IsValid(Town town)
         {
-            return fortification.FoodChange < 0 && fortification.FoodStocks < 200;
+            return town.FoodChange < 0 && town.FoodStocks < 200 && town.FoodStocks > 0;
         }
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            return LowFoodBase * ((int)town.GetProsperityLevel() + 1) + town.FoodChange / 5;
+            return LowFoodBase * (-(int)town.GetProsperityLevel() + town.FoodChange / 5);
         }
     }
 
@@ -145,7 +130,7 @@ namespace Extension.Features.Sandbox
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            return FoodShortageBase * ((int)town.GetProsperityLevel() + 1) + town.FoodChange / 10;
+            return FoodShortageBase * (-(int)town.GetProsperityLevel() + town.FoodChange / 10);
         }
     }
 
@@ -162,7 +147,7 @@ namespace Extension.Features.Sandbox
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            return FoodExcessBase * ((int)town.GetProsperityLevel() + 1) + town.FoodChange / 10;
+            return FoodExcessBase * ((int)town.GetProsperityLevel() + town.FoodChange / 10);
         }
     }
 
@@ -179,7 +164,7 @@ namespace Extension.Features.Sandbox
 
         protected override float GetChangeValue(Town town, float baseChange)
         {
-            return FoodAbundanceBase * ((int)town.GetProsperityLevel() + 1) + town.FoodChange / 5;
+            return FoodAbundanceBase * ((int)town.GetProsperityLevel() + town.FoodChange / 5);
         }
     }
 
@@ -258,16 +243,26 @@ namespace Extension.Features.Sandbox
                 defaultValue: 500,
                 min: 0,
                 max: 2000);
+            Options.Sandbox.Prosperity.SettlementProsperityModel.StarvingBase.Set(
+                value: 2.0f,
+                defaultValue: 2.0f,
+                min: 0,
+                max: 5);
+            Options.Sandbox.Prosperity.SettlementProsperityModel.UnderSiegeBase.Set(
+                value: 1.0f,
+                defaultValue: 1.0f,
+                min: 0,
+                max: 5);
             Options.Sandbox.Prosperity.SettlementProsperityModel.LowFoodBase.Set(
-                value: -0.4f,
-                defaultValue: -0.4f,
-                min: -1,
-                max: 0);
+                value: 1.5f,
+                defaultValue: 1.5f,
+                min: 0,
+                max: 5);
             Options.Sandbox.Prosperity.SettlementProsperityModel.FoodShortageBase.Set(
-                value: -0.2f,
-                defaultValue: -0.2f,
-                min: -1,
-                max: 0);
+                value: 1.0f,
+                defaultValue: 1.0f,
+                min: 0,
+                max: 5);
             Options.Sandbox.Prosperity.SettlementProsperityModel.FoodExcessBase.Set(
                 value: 1,
                 defaultValue: 1,
