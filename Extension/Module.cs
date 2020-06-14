@@ -13,6 +13,7 @@ using Extension.Config;
 using Extension.Config.UI;
 using Extension.Utils;
 using Extension.Resources;
+using System.Text;
 
 namespace Extension
 {
@@ -74,6 +75,10 @@ namespace Extension
             if (Error != null)
             {
                 Helper.DisplayMessage($"Error {Error.Message} during load of {ModuleId}", Colors.Red);
+            }
+            else if (AreOtherModsInstalled(out string otherMods))
+            {
+                Helper.DisplayMessage($"Warning, other mods ({otherMods}) are installed, there could be compatibility issues", Color.ConvertStringToColor("#FF6A00FF"));
             }
             else if (Loaded)
             {
@@ -198,6 +203,30 @@ namespace Extension
                     7000,
                     () => ScreenManager.PushScreen(new OptionsScreen()),
                     false));
+        }
+
+        bool AreOtherModsInstalled(out string otherMods)
+        {
+            bool result = false;
+            StringBuilder sb = new StringBuilder();
+            foreach (ModuleInfo mod in from m in ModuleInfo.GetModules()
+                                       where m.Id != ModuleId
+                                             && m.Id != "Native"
+                                             && m.Id != "Sandbox"
+                                             && m.Id != "SandBoxCore"
+                                             && m.Id != "StoryMode"
+                                             && m.Id != "CustomBattle"
+                                       select m)
+            {
+                if (sb.Length > 0)
+                {
+                    sb.Append(", ");
+                }
+                sb.Append(mod.Name);
+                result = true;
+            }
+            otherMods = sb.ToString();
+            return result;
         }
 
         bool CheckVersionCompatibility()
