@@ -79,6 +79,7 @@ Here is a short list of current features:
   * Choose hideout assault troops
   * Faster forward time
   * Kingdom statistic overlay
+  * Event alerts
 
 * **Battle changes**
   * Adjusted troop defensiveness
