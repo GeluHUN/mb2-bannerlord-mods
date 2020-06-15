@@ -13,17 +13,14 @@ using Extension.Config;
 using Extension.Config.UI;
 using Extension.Utils;
 using Extension.Resources;
-using System.Text;
 
 namespace Extension
 {
     class Module : MBSubModuleBase
     {
         public readonly static string ModuleId = "Extension";
-
         public static Module Instance { get; private set; }
-
-        public ApplicationVersion Version => ModuleInfo.GetModules().First(m => m.Id == ModuleId).Version;
+        public static ApplicationVersion Version => ModuleInfo.GetModules().First(m => m.Id == ModuleId).Version;
 
         public event MissionBehaviourInitializeEventHandler MissionBehaviourInitializeEvent;
         public event ApplicationTickEventHandler ApplicationTickEvent;
@@ -37,7 +34,7 @@ namespace Extension
 
         bool Loaded;
         Harmony HarmonyModule;
-        Exception Error;
+        bool ErrorDuringLoad;
         readonly Dictionary<string, ApplicationVersion> ExpectedModules =
             new Dictionary<string, ApplicationVersion>()
             {
@@ -49,6 +46,8 @@ namespace Extension
 
         protected override void OnSubModuleLoad()
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
+            ErrorDuringLoad = false;
             if (CheckVersionCompatibility())
             {
                 try
@@ -60,25 +59,27 @@ namespace Extension
                     ResourceManager.Instance.Load();
                     AddOptionsScreen();
                     Loaded = true;
+                    Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
                 }
                 catch (Exception e)
                 {
                     HarmonyModule = null;
                     Instance = null;
-                    Error = e;
+                    ErrorDuringLoad = true;
+                    Helper.LogException(MethodBase.GetCurrentMethod(), e);
                 }
             }
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
-            if (Error != null)
+            if (ErrorDuringLoad)
             {
-                Helper.DisplayMessage($"Error {Error.Message} during load of {ModuleId}", Colors.Red);
+                Helper.DisplayMessage($"There was an error during the load of {ModuleId}", Colors.Red);
             }
-            else if (AreOtherModsInstalled(out string otherMods))
+            else if (CheckOtherModsAreInstalled())
             {
-                Helper.DisplayMessage($"Warning, other mods ({otherMods}) are installed, there could be compatibility issues", Color.ConvertStringToColor("#FF6A00FF"));
+                Helper.DisplayMessage($"Warning, other mods are installed, there could be compatibility issues", Color.ConvertStringToColor("#FF6A00FF"));
             }
             else if (Loaded)
             {
@@ -92,6 +93,7 @@ namespace Extension
 
         protected override void OnSubModuleUnloaded()
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             if (Loaded)
             {
                 ResourceManager.Instance.Unload();
@@ -101,6 +103,7 @@ namespace Extension
                 Instance = null;
                 Helper.DisplayMessage($"{ModuleId} unloaded");
             }
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         protected override void OnGameStart(Game game, IGameStarter starter)
@@ -111,12 +114,22 @@ namespace Extension
             }
             if (game.GameType is Campaign && starter is CampaignGameStarter campaignGameStarter)
             {
-                PatchAll();
-                AddCampaignBehaviors(campaignGameStarter);
-                AddCampaignModels(campaignGameStarter);
+                Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
+                try
+                {
+                    PatchAll();
+                    AddCampaignBehaviors(campaignGameStarter);
+                    AddCampaignModels(campaignGameStarter);
+                    GameStartEventHandler handler = GameStartEvent;
+                    handler?.Invoke(game, starter);
+                    Helper.DisplayMessage($"{ModuleId} started");
+                    Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
+                }
+                catch (Exception e)
+                {
+                    Helper.LogException(MethodBase.GetCurrentMethod(), e);
+                }
             }
-            GameStartEventHandler handler = GameStartEvent;
-            handler?.Invoke(game, starter);
         }
 
         public override void OnGameEnd(Game game)
@@ -125,9 +138,11 @@ namespace Extension
             {
                 return;
             }
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             GameEndEventHandler handler = GameEndEvent;
             handler?.Invoke(game);
             HarmonyModule.UnpatchAll();
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         public override void OnMissionBehaviourInitialize(Mission mission)
@@ -143,9 +158,7 @@ namespace Extension
         protected override void OnApplicationTick(float dt)
         {
             base.OnApplicationTick(dt);
-            if (Loaded == false
-                || Helper.TheGame == null
-                || Helper.TheGame.CurrentState != Game.State.Running)
+            if (Loaded == false || Helper.TheGame == null || Helper.TheGame.CurrentState != Game.State.Running)
             {
                 return;
             }
@@ -155,15 +168,18 @@ namespace Extension
 
         void PatchAll()
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             HarmonyModule.PatchAll();
             foreach (MethodBase m in HarmonyModule.GetPatchedMethods())
             {
-                Helper.DisplayMessage($"Patched: {m.DeclaringType.Name}.{m.Name}");
+                Helper.LogMessage($"Patched: {m.DeclaringType.Name}.{m.Name}");
             }
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         void AddCampaignModels(CampaignGameStarter campaignGameStarter)
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             foreach (Type type in from categroy in Configuration.Instance
                                   from child in categroy
                                   where child is Group
@@ -174,12 +190,14 @@ namespace Extension
                                   select cls)
             {
                 campaignGameStarter.AddBehavior((CampaignBehaviorBase)Activator.CreateInstance(type));
-                Helper.DisplayMessage($"Behavior {type.Name} loaded");
+                Helper.LogMessage($"Behavior {type.Name} loaded");
             }
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         void AddCampaignBehaviors(CampaignGameStarter campaignGameStarter)
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             foreach (Type type in from categroy in Configuration.Instance
                                   from child in categroy
                                   where child is Group
@@ -190,8 +208,9 @@ namespace Extension
                                   select cls)
             {
                 campaignGameStarter.AddModel((GameModel)Activator.CreateInstance(type));
-                Helper.DisplayMessage($"Model {type.Name} loaded");
+                Helper.LogMessage($"Model {type.Name} loaded");
             }
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         void AddOptionsScreen()
@@ -205,12 +224,12 @@ namespace Extension
                     false));
         }
 
-        bool AreOtherModsInstalled(out string otherMods)
+        bool CheckOtherModsAreInstalled()
         {
             bool result = false;
-            StringBuilder sb = new StringBuilder();
             foreach (ModuleInfo mod in from m in ModuleInfo.GetModules()
                                        where m.Id != ModuleId
+                                             && m.IsSelected
                                              && m.Id != "Native"
                                              && m.Id != "Sandbox"
                                              && m.Id != "SandBoxCore"
@@ -218,24 +237,27 @@ namespace Extension
                                              && m.Id != "CustomBattle"
                                        select m)
             {
-                if (sb.Length > 0)
-                {
-                    sb.Append(", ");
-                }
-                sb.Append(mod.Name);
                 result = true;
+                Helper.LogMessage($"Other mod found: {mod.Name} {mod.Version}");
             }
-            otherMods = sb.ToString();
             return result;
         }
 
         bool CheckVersionCompatibility()
         {
-            return (from e in ExpectedModules
-                    from m in ModuleInfo.GetModules()
-                    where m.Id == e.Key && m.Version == e.Value
-                    select m)
-                    .Count() == ExpectedModules.Count;
+            bool result = (from e in ExpectedModules
+                           from m in ModuleInfo.GetModules()
+                           where m.Id == e.Key && m.Version == e.Value
+                           select m).Count() == ExpectedModules.Count;
+            if (result)
+            {
+                Helper.LogMessage($"{ModuleId} can load, game version is compatible");
+            }
+            else
+            {
+                Helper.LogMessage($"{ModuleId} can not load, game version is not compatible");
+            }
+            return result;
         }
     }
 }

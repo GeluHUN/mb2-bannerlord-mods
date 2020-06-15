@@ -3,11 +3,33 @@
 
 ## Version and compatibility
 
-This mod only works with game version **e1.4.2**.
+This mod only works with game version **BETA e1.4.2**.
 
 This mod is not save game compatible.
 
 It is not recommended to use any other mods beside the ones mentioned below.
+
+## Issues, errors and logging
+
+**Logging**
+
+The mod uses the game's own logging functions to write information and errors into log files. Upon a mod or game error the log files will most likely contain some useful information about the error.
+
+* Default log file location: `c:\\ProgramData\\Mount and Blade II Bannerlord\\logs`
+* Default information log file name: `rgl_log_XXXXX.txt`
+* Default error log file name: `rgl_log_errors_XXXXX.txt`
+
+**Crash**
+
+If the game crashes then select **yes** when the game asks if to create a report of the crash. If you suspect that a mod has caused the crash, you don't haveto send the report to Talewordls, but send it to the mod creator.
+
+* Default crash file location: `c:\\ProgramData\\Mount and Blade II Bannerlord\\crashes\\DATE_TIME`
+* Default crash file name: `dump.dmp`
+
+**Known issues**
+  * If battle size is more then 1000 (original game maximum) then the game crashes
+  * Use the shield featuer is currently not working
+
 
 ## Origin and usage
 
@@ -78,7 +100,7 @@ None at the moment
 
 ## Compatible mods
 
-Unknown at the moment
+Mods that are only modifying XML files can be used without any problems.
 
 
 ## Credits

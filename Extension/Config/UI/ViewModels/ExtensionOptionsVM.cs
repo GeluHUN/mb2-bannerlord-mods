@@ -27,7 +27,7 @@ namespace Extension.Config.UI
         public void ExecuteSave()
         {
             OptionCategories.ForEach(c => c.SaveOptions());
-            Configuration.Instance.Save(Module.Instance.Version);
+            Configuration.Instance.Save(Module.Version);
             ScreenManager.PopScreen();
         }
 

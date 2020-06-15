@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using Extension.Utils;
+using HarmonyLib;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace Extension.Config
 
         public void Initialize()
         {
+            Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             foreach (Type t in from t in Assembly.GetExecutingAssembly().GetTypes()
                                where AccessTools.Method(t, "Initialize_Configuration") != null
                                select t)
@@ -37,6 +39,7 @@ namespace Extension.Config
                     .Method("Initialize_Configuration")
                     .GetValue();
             }
+            Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
         public void Add(Category category)
@@ -83,6 +86,7 @@ namespace Extension.Config
                     sb.Append($"{category.Id}.{option.Id}={option.GetValue()}\n");
                 }
             }
+            Helper.LogMessage($"saving configuration:\n{sb}");
             File.WriteAllText(FileName, sb.ToString());
         }
 
@@ -93,9 +97,11 @@ namespace Extension.Config
                 Save(version);
                 return;
             }
+            string configText = File.ReadAllText(FileName);
+            Helper.LogMessage($"loading configuration:\n{configText}");
             Dictionary<string, string> configValues = (
                 from values in
-                    from line in File.ReadAllText(FileName).Split('\n')
+                    from line in configText.Split('\n')
                     where line.Length > 0
                           && line.Contains('=')
                     select line.Split('=')

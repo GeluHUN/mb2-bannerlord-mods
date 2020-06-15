@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using TaleWorlds.CampaignSystem;
 using TaleWorlds.Core;
 using TaleWorlds.Library;
@@ -49,6 +50,26 @@ namespace Extension.Utils
                 return true;
             }
             return false;
+        }
+
+        public static void LogException(MethodBase mehtod, Exception error)
+        {
+            Debug.Print($"{Module.ModuleId} encountered the following problem during {mehtod.DeclaringType.Name}.{mehtod.Name}: {error.Message}\nError stack:\n{error.StackTrace}");
+        }
+
+        public static void LogMessage(string message)
+        {
+            Debug.Print($"{Module.ModuleId} {Module.Version} {message}");
+        }
+
+        public static void LogFunctionStart(MethodBase mehtod)
+        {
+            Debug.Print($"{Module.ModuleId} {Module.Version} {mehtod.DeclaringType.Name}.{mehtod.Name} started");
+        }
+
+        public static void LogFunctionEnd(MethodBase mehtod)
+        {
+            Debug.Print($"{Module.ModuleId} {Module.Version} {mehtod.DeclaringType.Name}.{mehtod.Name} finished");
         }
     }
 }
