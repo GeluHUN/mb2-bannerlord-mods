@@ -1,20 +1,29 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <SpriteData>
 	<SpriteCategories>
 		<SpriteCategory>
 			<Name>Extension</Name>
 			<SpriteSheetCount>1</SpriteSheetCount>
-			<SpriteSheetSize ID='1' Width='256' Height='256'/>
+			<SpriteSheetSize ID='1' Width='512' Height='256'/>
 		</SpriteCategory>
 	</SpriteCategories>
 	<SpriteParts>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>alert_background</Name>
+			<Width>300</Width>
+			<Height>30</Height>
+			<SheetX>0</SheetX>
+			<SheetY>0</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
 		<SpritePart>
 			<SheetID>1</SheetID>
 			<Name>option_value_background</Name>
 			<Width>150</Width>
 			<Height>65</Height>
 			<SheetX>0</SheetX>
-			<SheetY>0</SheetY>
+			<SheetY>31</SheetY>
 			<CategoryName>Extension</CategoryName>
 		</SpritePart>
 		<SpritePart>
@@ -23,7 +32,7 @@
 			<Width>150</Width>
 			<Height>65</Height>
 			<SheetX>0</SheetX>
-			<SheetY>66</SheetY>
+			<SheetY>97</SheetY>
 			<CategoryName>Extension</CategoryName>
 		</SpritePart>
 		<SpritePart>
@@ -32,7 +41,7 @@
 			<Width>49</Width>
 			<Height>39</Height>
 			<SheetX>0</SheetX>
-			<SheetY>132</SheetY>
+			<SheetY>163</SheetY>
 			<CategoryName>Extension</CategoryName>
 		</SpritePart>
 		<SpritePart>
@@ -41,11 +50,51 @@
 			<Width>39</Width>
 			<Height>49</Height>
 			<SheetX>151</SheetX>
-			<SheetY>0</SheetY>
+			<SheetY>31</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>alert_battle</Name>
+			<Width>30</Width>
+			<Height>30</Height>
+			<SheetX>50</SheetX>
+			<SheetY>163</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>alert_raid</Name>
+			<Width>30</Width>
+			<Height>30</Height>
+			<SheetX>191</SheetX>
+			<SheetY>31</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>alert_siege</Name>
+			<Width>30</Width>
+			<Height>30</Height>
+			<SheetX>151</SheetX>
+			<SheetY>81</SheetY>
+			<CategoryName>Extension</CategoryName>
+		</SpritePart>
+		<SpritePart>
+			<SheetID>1</SheetID>
+			<Name>alert_starve</Name>
+			<Width>30</Width>
+			<Height>30</Height>
+			<SheetX>50</SheetX>
+			<SheetY>194</SheetY>
 			<CategoryName>Extension</CategoryName>
 		</SpritePart>
 	</SpriteParts>
 	<Sprites>
+		<GenericSprite>
+			<Name>alert_background</Name>
+			<SpritePartName>alert_background</SpritePartName>
+		</GenericSprite>
 		<GenericSprite>
 			<Name>option_value_background</Name>
 			<SpritePartName>option_value_background</SpritePartName>
@@ -61,6 +110,22 @@
 		<GenericSprite>
 			<Name>arrow_pointing_right</Name>
 			<SpritePartName>arrow_pointing_right</SpritePartName>
+		</GenericSprite>
+		<GenericSprite>
+			<Name>alert_battle</Name>
+			<SpritePartName>alert_battle</SpritePartName>
+		</GenericSprite>
+		<GenericSprite>
+			<Name>alert_raid</Name>
+			<SpritePartName>alert_raid</SpritePartName>
+		</GenericSprite>
+		<GenericSprite>
+			<Name>alert_siege</Name>
+			<SpritePartName>alert_siege</SpritePartName>
+		</GenericSprite>
+		<GenericSprite>
+			<Name>alert_starve</Name>
+			<SpritePartName>alert_starve</SpritePartName>
 		</GenericSprite>
 	</Sprites>
 </SpriteData>

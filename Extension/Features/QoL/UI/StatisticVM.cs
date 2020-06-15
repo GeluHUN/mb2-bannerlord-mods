@@ -58,7 +58,7 @@ namespace Extension.Features.QoL.UI
 
     class StatisticVM : ViewModel
     {
-        NumberFormatInfo FormatInfo;
+        readonly NumberFormatInfo FormatInfo;
 
         public StatisticVM()
             : base()

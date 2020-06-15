@@ -1098,6 +1098,19 @@ namespace Extension.Config
                 }
             }
 
+            public static class Alerts
+            {
+                public static string Id => "alerts";
+                public static Group Group => Category[Id] as Group;
+
+                static Alerts()
+                {
+                    Group.Create(Id, Category,
+                        name: "Game alerts",
+                        hint: "When enabled game alerts about raids and sieges are displayed in a small overlay window.");
+                }
+            }
+
             static QoL()
             {
                 Category.Create(Id,

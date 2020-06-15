@@ -1,0 +1,26 @@
+<Prefab>
+	<Window>
+		<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" HorizontalAlignment="Right" VerticalAlignment="Bottom" MarginBottom="150" MarginRight="20" IsVisible="@IsVisible">
+			<Children>
+				<ListPanel DataSource="{AlertList}" WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="VerticalTopToBottom">
+					<ItemTemplate>
+						<Widget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" Sprite="alert_background">
+							<Children>
+								<ButtonWidget WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" IsEnabled="@HasMapCoord" Command.Click="JumpToEvent" ClipContents="true" Command.HoverBegin="ShowTooltip" Command.HoverEnd="HideTooltip" DoNotPassEventsToChildren="true">
+									<Children>
+										<ListPanel WidthSizePolicy="CoverChildren" HeightSizePolicy="CoverChildren" LayoutImp.LayoutMethod="HorizontalLeftToRight">
+											<Children>
+												<ImageWidget MarginLeft="5" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" SuggestedWidth="30" SuggestedHeight="30" Sprite="@AlertIcon" Brush.Color="@AlertColor" />
+												<RichTextWidget MarginLeft="5" WidthSizePolicy="Fixed" HeightSizePolicy="Fixed" Text="@ShortText" Brush="Extension.Alerts.Text" Brush.FontColor="@AlertColor" SuggestedWidth="300" SuggestedHeight="30" />
+											</Children>
+										</ListPanel>
+									</Children>
+								</ButtonWidget>
+							</Children>
+						</Widget>
+					</ItemTemplate>
+				</ListPanel>
+			</Children>
+		</Widget>
+	</Window>
+</Prefab>

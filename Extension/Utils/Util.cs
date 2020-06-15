@@ -33,5 +33,22 @@ namespace Extension.Utils
                 action(item);
             }
         }
+
+        public static bool IsPlayerFaction(this IFaction faction)
+        {
+            if (faction.IsClan && faction as Clan == Clan.PlayerClan)
+            {
+                return true;
+            }
+            else if (faction.IsClan && (faction as Clan).Kingdom == Hero.MainHero.MapFaction as Kingdom)
+            {
+                return true;
+            }
+            if (faction.IsKingdomFaction && faction as Kingdom == Hero.MainHero.MapFaction as Kingdom)
+            {
+                return true;
+            }
+            return false;
+        }
     }
 }
