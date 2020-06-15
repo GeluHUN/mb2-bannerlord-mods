@@ -1107,7 +1107,31 @@ namespace Extension.Config
                 {
                     Group.Create(Id, Category,
                         name: "Game alerts",
-                        hint: "When enabled game alerts about raids and sieges are displayed in a small overlay window.");
+                        hint: new RichtextBuilder()
+                            .Append("When enabled important events are displayed in the bottom right corner.")
+                            .AppendLine()
+                            .Append("Each event has a detailed tooltip, and can be clicked to jump to the event source.")
+                            .AppendLine()
+                            .Append("Pressing CTRL+A shows/hides the event overlay.")
+                            .AppendLine()
+                            .Append("The following events are displayed:")
+                            .AppendDoubleLine()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Faction town is starving (high priority)")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Faction town is sieged (high priority)")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Faction party was attacked (medium priority)")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Faction village is raided (medium priority)")
+                            .EndStyle()
+                            .StartStyle("Smaller")
+                            .AppendBulletpointL1("Faction party attacks something (low priority)")
+                            .EndStyle()
+                            .ToString());
                 }
             }
 
