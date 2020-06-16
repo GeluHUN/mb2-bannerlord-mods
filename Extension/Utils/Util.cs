@@ -37,17 +37,33 @@ namespace Extension.Utils
 
         public static bool IsPlayerFaction(this IFaction faction)
         {
-            if (faction.IsClan && faction as Clan == Clan.PlayerClan)
+            if (faction == null)
             {
-                return true;
+                return false;
             }
-            else if (faction.IsClan && (faction as Clan).Kingdom == Hero.MainHero.MapFaction as Kingdom)
+            if (faction.IsBanditFaction)
             {
-                return true;
+                return false;
             }
-            if (faction.IsKingdomFaction && faction as Kingdom == Hero.MainHero.MapFaction as Kingdom)
+            if (faction.IsClan)
             {
-                return true;
+                Clan clan = faction as Clan;
+                if (clan == Clan.PlayerClan)
+                {
+                    return true;
+                }
+                if (clan.Kingdom != null && clan.Kingdom == Clan.PlayerClan.Kingdom)
+                {
+                    return true;
+                }
+            }
+            if (faction.IsKingdomFaction)
+            {
+                Kingdom kingdom = faction as Kingdom;
+                if (kingdom == Clan.PlayerClan.Kingdom)
+                {
+                    return true;
+                }
             }
             return false;
         }
