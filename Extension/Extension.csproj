@@ -339,7 +339,7 @@
     <Compile Include="Features\Encyclopedia\HeroVM.cs" />
     <Compile Include="Features\Encyclopedia\TalkToHero.cs" />
     <Compile Include="Features\QoL\GameAlerts.cs" />
-    <Compile Include="Features\QoL\UI\AlertsScreen.cs" />
+    <Compile Include="Features\QoL\UI\AlertMapView.cs" />
     <Compile Include="Features\QoL\UI\AlertsVM.cs" />
     <Compile Include="Features\Sandbox\SettlementProsperityModel.cs" />
     <Compile Include="Features\Campaign\SkillTraining.cs" />

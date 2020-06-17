@@ -457,7 +457,7 @@ namespace Extension.Features.QoL
     class GameAlertBehavior : CampaignBehaviorExt
     {
         readonly GameAlerts GameAlerts = new GameAlerts();
-        AlertsScreen Screen;
+        AlertMapView MapView;
         AlertsVM DataSource;
 
         public override void RegisterEvents()
@@ -473,7 +473,7 @@ namespace Extension.Features.QoL
             GameAlertsHotKeyCategory.Remove();
             Module.Instance.GameEndEvent += OnGameEnd;
             Module.Instance.ApplicationTickEvent += OnApplicationTick;
-            Screen = new AlertsScreen(DataSource = new AlertsVM());
+            DataSource = new AlertsVM();
             UpdateStarvingTownAlerts();
             UpdateMapEventAlerts();
         }
@@ -494,12 +494,8 @@ namespace Extension.Features.QoL
             GameAlertsHotKeyCategory.Remove();
             Module.Instance.GameEndEvent -= OnGameEnd;
             Module.Instance.ApplicationTickEvent -= OnApplicationTick;
-            if (Screen != null)
-            {
-                Screen.OnFinalize();
-                Screen = null;
-                DataSource = null;
-            }
+            MapView = null;
+            DataSource = null;
         }
 
         void OnApplicationTick(float dt)
@@ -508,9 +504,13 @@ namespace Extension.Features.QoL
             {
                 return;
             }
+            if (MapView == null)
+            {
+                MapView = AlertMapView.AddAlertView(DataSource);
+            }
             if (GameAlertsHotKeyCategory.IsHotKeyPressed())
             {
-                Screen.ToggleVisible();
+                MapView.ToggleVisible();
             }
         }
 

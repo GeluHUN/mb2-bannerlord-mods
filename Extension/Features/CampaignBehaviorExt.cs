@@ -1,6 +1,5 @@
 ﻿using System;
 using TaleWorlds.CampaignSystem;
-using TaleWorlds.Core;
 
 namespace Extension.Features
 {
