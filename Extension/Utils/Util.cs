@@ -21,6 +21,11 @@ namespace Extension.Utils
             InformationManager.DisplayMessage(new InformationMessage(msg, color));
         }
 
+        public static void DisplayMessage(InformationMessage msg)
+        {
+            InformationManager.DisplayMessage(msg);
+        }
+
         public static T GetCampaignBehavior<T>()
             where T : CampaignBehaviorBase
         {

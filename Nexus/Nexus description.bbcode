@@ -23,6 +23,8 @@ Full source code available here: [url=https://github.com/GeluHUN/mb2-bannerlord
 
 [color=#e69138][b][size=5]Issues, errors and logging[/size][/b][/color]
 
+Upon encountering any error during the loading of the mod the Extension main menu option will be disabled.
+
 [b]Logging[/b]
 
 The mod uses the game's own logging functions to write information and errors into log files. Upon a mod or game error the log files will most likely contain some useful information about the error.
@@ -37,9 +39,13 @@ The mod uses the game's own logging functions to write information and errors in
 If the game crashes then select **yes** when the game asks if to create a report of the crash. If you suspect that a mod has caused the crash, you don't have to send the report to Talewordls, but send it to the mod creator.
 
 [list]
-[*]Default crash file location: [code]c:\\ProgramData\\Mount and Blade II Bannerlord\\crashes\\DATE_TIME[/code]
+[*]Default crash file location: [code]c:\ProgramData\Mount and Blade II Bannerlord\crashes\DATE_TIME[/code]
 [*]Default crash file name: [code]dump.dmp[/code]
 [/list]
+[b]Harmony[/b]
+
+This mod uses the latest Harmony version (2.0.2.0) and can not work with older versions. If another mod with an older Harmon version is loaded before this mod could load, then Extension will give an error message.
+
 [b]Known issues[/b]
 [list]
 [*]If battle size is more then 1000 (original game maximum) then the game crashes
@@ -133,4 +139,5 @@ My (implementation-) solutions are my own, but credit where credit’s due: for 
 [*]Shield changes with [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/1701]Realistic Shield Usage[/url] from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/89847878]unstableai[/url]
 [*]Hideout troop selection with [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/1617]Hideout Roster[/url] from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/41175625]grizmul[/url]
 [*]Battle size change with [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/542]Battle Size Unlocker[/url] from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/5842176]petiti06[/url]
+[*]Event warnings with [url=https://www.nexusmods.com/mountandblade2bannerlord/mods/306]Sound The Alarm[/url] from [url=https://www.nexusmods.com/mountandblade2bannerlord/users/40762730]TheWulfPanda[/url]
 [/list]

@@ -2,7 +2,6 @@
 using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
-using HarmonyLib;
 using TaleWorlds.Core;
 using TaleWorlds.MountAndBlade;
 using TaleWorlds.CampaignSystem;
@@ -33,61 +32,53 @@ namespace Extension
         public delegate void GameEndEventHandler(Game game);
 
         bool Loaded;
-        Harmony HarmonyModule;
-        bool ErrorDuringLoad;
-        readonly Dictionary<string, ApplicationVersion> ExpectedModules =
-            new Dictionary<string, ApplicationVersion>()
-            {
-                { "Native", ApplicationVersion.FromString("e1.4.2", ApplicationVersionGameType.Singleplayer)},
-                { "Sandbox", ApplicationVersion.FromString("e1.4.2", ApplicationVersionGameType.Singleplayer)},
-                { "SandBoxCore", ApplicationVersion.FromString("e1.4.2", ApplicationVersionGameType.Singleplayer)},
-                { "StoryMode", ApplicationVersion.FromString("e1.4.2", ApplicationVersionGameType.Singleplayer)}
-            };
+        List<InformationMessage> LoadMessages = new List<InformationMessage>();
 
         protected override void OnSubModuleLoad()
         {
             Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
-            ErrorDuringLoad = false;
-            if (CheckVersionCompatibility())
+            try
             {
-                try
+                if (!CompatibilityHelper.Instance.CheckGameVersion())
                 {
-                    Instance = this;
-                    HarmonyModule = new Harmony(ModuleId);
-                    Configuration.Instance.Initialize();
-                    Configuration.Instance.Load(Version);
-                    ResourceManager.Instance.Load();
-                    AddOptionsScreen();
-                    Loaded = true;
-                    Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
+                    LoadMessages.Add(new InformationMessage($"{ModuleId} can not load, expected game version is {CompatibilityHelper.GameVersion}", Colors.Red));
+                    AddOptionsMenu(false);
+                    return;
                 }
-                catch (Exception e)
+                if (!HarmonyHelper.Instance.LoadAssembly())
                 {
-                    HarmonyModule = null;
-                    Instance = null;
-                    ErrorDuringLoad = true;
-                    Helper.LogException(MethodBase.GetCurrentMethod(), e);
+                    LoadMessages.Add(new InformationMessage($"{ModuleId} can not load, expected Harmony version is {HarmonyHelper.LibVersion}", Colors.Red));
+                    AddOptionsMenu(false);
+                    return;
                 }
+                if (!CompatibilityHelper.Instance.CheckOtherModules(ModuleId))
+                {
+                    LoadMessages.Add(new InformationMessage($"{ModuleId} may encounter problems, unkown mods found", Color.ConvertStringToColor("#FF6A00FF")));
+                }
+                Instance = this;
+                HarmonyHelper.Instance.Initialize(ModuleId);
+                Configuration.Instance.Initialize();
+                Configuration.Instance.Load(Version);
+                ResourceManager.Instance.Load();
+                AddOptionsMenu(Loaded = true);
+                LoadMessages.Add(new InformationMessage($"{ModuleId} {Version} loaded"));
+                Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
+            }
+            catch (Exception e)
+            {
+                HarmonyHelper.Instance.Release();
+                Instance = null;
+                AddOptionsMenu(false);
+                Helper.LogException(MethodBase.GetCurrentMethod(), e);
+                LoadMessages.Add(new InformationMessage($"{ModuleId} load failed, please check the logs for more information", Colors.Red));
             }
         }
 
         protected override void OnBeforeInitialModuleScreenSetAsRoot()
         {
-            if (ErrorDuringLoad)
+            foreach (InformationMessage msg in LoadMessages)
             {
-                Helper.DisplayMessage($"There was an error during the load of {ModuleId}", Colors.Red);
-            }
-            else if (CheckOtherModsAreInstalled())
-            {
-                Helper.DisplayMessage($"Warning, other mods are installed, there could be compatibility issues", Color.ConvertStringToColor("#FF6A00FF"));
-            }
-            else if (Loaded)
-            {
-                Helper.DisplayMessage($"{ModuleId} {Version} loaded");
-            }
-            else
-            {
-                Helper.DisplayMessage($"{ModuleId} NOT loaded, game version is incompatible", Colors.Red);
+                Helper.DisplayMessage(msg);
             }
         }
 
@@ -97,8 +88,8 @@ namespace Extension
             if (Loaded)
             {
                 ResourceManager.Instance.Unload();
-                HarmonyModule.UnpatchAll();
-                HarmonyModule = null;
+                HarmonyHelper.Instance.Module.UnpatchAll();
+                HarmonyHelper.Instance.Release();
                 Loaded = false;
                 Instance = null;
                 Helper.DisplayMessage($"{ModuleId} unloaded");
@@ -141,7 +132,7 @@ namespace Extension
             Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
             GameEndEventHandler handler = GameEndEvent;
             handler?.Invoke(game);
-            HarmonyModule.UnpatchAll();
+            HarmonyHelper.Instance.Module.UnpatchAll();
             Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
@@ -169,8 +160,8 @@ namespace Extension
         void PatchAll()
         {
             Helper.LogFunctionStart(MethodBase.GetCurrentMethod());
-            HarmonyModule.PatchAll();
-            foreach (MethodBase m in HarmonyModule.GetPatchedMethods())
+            HarmonyHelper.Instance.Module.PatchAll();
+            foreach (MethodBase m in HarmonyHelper.Instance.Module.GetPatchedMethods())
             {
                 Helper.LogMessage($"Patched: {m.DeclaringType.Name}.{m.Name}");
             }
@@ -213,51 +204,28 @@ namespace Extension
             Helper.LogFunctionEnd(MethodBase.GetCurrentMethod());
         }
 
-        void AddOptionsScreen()
+        void AddOptionsMenu(bool enabled)
         {
-            TaleWorlds.MountAndBlade.Module.CurrentModule.AddInitialStateOption(
-                new InitialStateOption(
-                    ModuleId,
-                    new TextObject($"{ModuleId}", null),
-                    7000,
-                    () => ScreenManager.PushScreen(new OptionsScreen()),
-                    false));
-        }
-
-        bool CheckOtherModsAreInstalled()
-        {
-            bool result = false;
-            foreach (ModuleInfo mod in from m in ModuleInfo.GetModules()
-                                       where m.Id != ModuleId
-                                             && m.IsSelected
-                                             && m.Id != "Native"
-                                             && m.Id != "Sandbox"
-                                             && m.Id != "SandBoxCore"
-                                             && m.Id != "StoryMode"
-                                             && m.Id != "CustomBattle"
-                                       select m)
+            if (enabled)
             {
-                result = true;
-                Helper.LogMessage($"Other mod found: {mod.Name} {mod.Version}");
-            }
-            return result;
-        }
-
-        bool CheckVersionCompatibility()
-        {
-            bool result = (from e in ExpectedModules
-                           from m in ModuleInfo.GetModules()
-                           where m.Id == e.Key && m.Version == e.Value
-                           select m).Count() == ExpectedModules.Count;
-            if (result)
-            {
-                Helper.LogMessage($"{ModuleId} can load, game version is compatible");
+                TaleWorlds.MountAndBlade.Module.CurrentModule.AddInitialStateOption(
+                    new InitialStateOption(
+                        ModuleId,
+                        new TextObject($"{ModuleId}", null),
+                        7000,
+                        () => ScreenManager.PushScreen(new OptionsScreen()),
+                        false));
             }
             else
             {
-                Helper.LogMessage($"{ModuleId} can not load, game version is not compatible");
+                TaleWorlds.MountAndBlade.Module.CurrentModule.AddInitialStateOption(
+                    new InitialStateOption(
+                        ModuleId,
+                        new TextObject($"{ModuleId} (not loaded)", null),
+                        7000,
+                        () => { },
+                        true));
             }
-            return result;
         }
     }
 }

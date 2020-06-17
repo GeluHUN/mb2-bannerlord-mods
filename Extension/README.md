@@ -11,6 +11,8 @@ It is not recommended to use any other mods beside the ones mentioned below.
 
 ## Issues, errors and logging
 
+Upon encountering any error during the module load the Extension main menu option will be disabled.
+
 **Logging**
 
 The mod uses the game's own logging functions to write information and errors into log files. Upon a mod or game error the log files will most likely contain some useful information about the error.
@@ -25,6 +27,10 @@ If the game crashes then select **yes** when the game asks if to create a report
 
 * Default crash file location: `c:\\ProgramData\\Mount and Blade II Bannerlord\\crashes\\DATE_TIME`
 * Default crash file name: `dump.dmp`
+
+**Harmony**
+
+This mod uses the latest Harmony version (2.0.2.0) and can not work with older versions. If another mod with an older Harmon version is loaded before this mod could load, then Extension will give an error message.
 
 **Known issues**
   * If battle size is more then 1000 (original game maximum) then the game crashes
@@ -122,3 +128,4 @@ My (implementation-) solutions are my own, but credit where credit's due: for th
 * Shield changes with [Realistic Shield Usage](https://www.nexusmods.com/mountandblade2bannerlord/mods/1701) from [unstableai](https://www.nexusmods.com/mountandblade2bannerlord/users/89847878)
 * Hideout troop selection with [Hideout Roster](https://www.nexusmods.com/mountandblade2bannerlord/mods/1617) from [grizmul](https://www.nexusmods.com/mountandblade2bannerlord/users/41175625)
 * Battle size change with [Battle Size Unlocker](https://www.nexusmods.com/mountandblade2bannerlord/mods/542) from [petiti06](https://www.nexusmods.com/mountandblade2bannerlord/users/5842176)
+* Event warnings with [Sound The Alarm](https://www.nexusmods.com/mountandblade2bannerlord/mods/306) from [TheWulfPanda](https://www.nexusmods.com/mountandblade2bannerlord/users/40762730)
