@@ -345,13 +345,13 @@ namespace Extension.Features.QoL
             }
             if (mapEvent.EventType == MapEvent.BattleTypes.FieldBattle)
             {
-                if (defender.MapFaction.IsPlayerFaction())
+                if (defender.MapFaction.IsPlayerFaction() && defender.IsMobile && defender.Leader.IsHero)
                 {
                     result = new PartyAttackedAlert(mapEvent);
                     AlertList.Add(result.Id, result);
                     return true;
                 }
-                if (attacker.MapFaction.IsPlayerFaction())
+                if (attacker.MapFaction.IsPlayerFaction() && defender.IsMobile && defender.Leader.IsHero)
                 {
                     result = new PartyAttackingAlert(mapEvent);
                     AlertList.Add(result.Id, result);
@@ -360,13 +360,13 @@ namespace Extension.Features.QoL
             }
             if (mapEvent.EventType == MapEvent.BattleTypes.Raid)
             {
-                if (defender.MapFaction.IsPlayerFaction())
+                if (defender.MapFaction.IsPlayerFaction() && defender.IsSettlement)
                 {
                     result = new RaidAlert(mapEvent);
                     AlertList.Add(result.Id, result);
                     return true;
                 }
-                if (attacker.MapFaction.IsPlayerFaction())
+                if (attacker.MapFaction.IsPlayerFaction() && defender.IsMobile && defender.Leader.IsHero)
                 {
                     result = new PartyAttackingAlert(mapEvent);
                     AlertList.Add(result.Id, result);
@@ -375,13 +375,13 @@ namespace Extension.Features.QoL
             }
             if (mapEvent.EventType == MapEvent.BattleTypes.Siege)
             {
-                if (defender.MapFaction.IsPlayerFaction())
+                if (defender.MapFaction.IsPlayerFaction() && defender.IsSettlement)
                 {
                     result = new SiegeAlert(mapEvent);
                     AlertList.Add(result.Id, result);
                     return true;
                 }
-                if (attacker.MapFaction.IsPlayerFaction())
+                if (attacker.MapFaction.IsPlayerFaction() && defender.IsMobile && defender.Leader.IsHero)
                 {
                     result = new PartyAttackingAlert(mapEvent);
                     AlertList.Add(result.Id, result);
